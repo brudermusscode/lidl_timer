@@ -1,0 +1,15 @@
+{
+    "name": "vendor/lidl_timer",
+    "description": "A timer for the next lidl break",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    },
+    "license": "All rights reserved (C)",
+    "authors": [
+        {
+            "name": "Justin Seidel",
+            "email": "js@deltacity.net"
+        }
+    ]
+}

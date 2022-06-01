@@ -1,0 +1,13 @@
+{
+  "connect": {
+    "host": "mysql",
+    "user": "root",
+    "pass": "secret",
+    "db": "lidl_timer_dev",
+    "charset": "utf8mb4",
+    "grecaptcha": {
+      "recaptcha_publickey": "6LdhaTIcAAAAALqQqcX1pOeX5pGg6hpM0vf65EeQ",
+      "recaptcha_privatekey": "6LdhaTIcAAAAANcxyK0dGP2uqHTi8YiEKPzAPI_T"
+    }
+  }
+}

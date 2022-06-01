@@ -1,0 +1,57 @@
+version: '3'
+
+networks:
+  dev:
+
+
+volumes:
+  mysql:
+
+    # x-STD_APP: &app_base
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/var/www/lidl-timer.de
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - 80:80
+    networks:
+      - dev
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: lidl_timer_dev
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - dev
+
+  pma:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: secret
+      PMA_ARBITRARY: 1
+      PMA_PORT: 3306
+    ports:
+      - 727:80
+    networks:
+      - dev
+    depends_on:
+      - mysql

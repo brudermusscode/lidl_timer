@@ -1,0 +1,24 @@
+# pull latest php+apache image from docker.io
+FROM php:8.0-apache
+
+# set apache workdir
+WORKDIR /var/www/lidl-timer.de
+
+# copy whole app to publicly available folder
+COPY . .
+
+# install dependencies packages
+RUN apt-get clean && apt-get update -qq && apt-get install -y nodejs mariadb-client apache2 && \
+  docker-php-ext-install pdo_mysql
+
+# copy dev conf file to sites-available
+COPY config/server/lidl-timer.de.dev.conf /etc/apache2/sites-available/lidl-timer.de.conf
+
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
+  a2dissite 000-default && \
+  a2ensite lidl-timer.de && \
+  a2enmod headers rewrite && \
+  service apache2 restart
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

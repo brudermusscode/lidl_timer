@@ -1,0 +1,10 @@
+# apache
+/apache
+
+# configuration
+/config/ftp
+/config/db/connection.prod.json
+
+# dependencies
+/vendor/
+composer.lock
