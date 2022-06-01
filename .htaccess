@@ -1,9 +1,16 @@
+# [NC]: non case sensitive, cusTom, CuStOmm or just custom - doesn't matter then
+# [L]: last rule a specific condition will match
+
 <FilesMatch "\.(css|flv|gif|htm|html|ico|jpe|jpeg|jpg|js|mp3|mp4|png|pdf|swf|txt)$">
   <IfModule mod_expires.c>
     ExpiresActive Off
   </IfModule>
   <IfModule mod_headers.c>
     FileETag None
+
+    Header set Access-Control-Allow-Origin "*"
+	  Header always set Strict-Transport-Security "max-age=31536000;includeSubDomains"
+
     Header unset ETag
     Header unset Pragma
     Header unset Cache-Control
@@ -13,3 +20,37 @@
     Header set Expires "Thu, 1 Jan 1970 00:00:00 GMT"
   </IfModule>
 </FilesMatch>
+
+<ifModule mod_rewrite.c>
+	RewriteEngine on
+</ifModule>
+
+# directory browsing
+Options All -Indexes
+
+# custom error pages
+ErrorDocument 500 /404.php
+ErrorDocument 401 /404.php
+ErrorDocument 404 /404.php
+
+# force https
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+# force www.
+# RewriteCond %{HTTP_HOST} ^lidl-timer\.de [NC]
+# RewriteRule ^(.*)$ https://www.lidl-timer.de/$1 [R=301,NC,L]
+
+# pretty urls
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^([^.]+)$ $1.php [NC,L]
+
+# remove trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /(.*)/$
+RewriteRule ^ /%1 [R=301,L]
+
+# set root path
+RewriteRule ^$ /app/templates/home/index.php [NC,L]

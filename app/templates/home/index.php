@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 # set current page
 $page = 'Index';
 
-$get_content = file_get_contents("time.json");
+$get_content = file_get_contents(ROOT . "/time.json");
 $json = json_decode($get_content, true);
 $time = $json['time'];
 
