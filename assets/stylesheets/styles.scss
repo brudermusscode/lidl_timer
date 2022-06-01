@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Comfortaa", cursive;
+  font-size: 100%;
+  background-color: var(--colour-yellow);
+  color: white;
+  letter-spacing: 0.2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --q-size: 40em;
+  --colour-yellow: #fff200;
+  --colour-yellow-100: #ffdd00;
+  --colour-blue: #00529c;
+  --colour-red: #e40006;
+}
+
+[m] {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+[a] {
+  position: absolute;
+}
+
+[blink] {
+  color: white;
+  animation: blink 2s ease infinite;
+  margin: 0 0.2em;
+}
+
+s {
+  @extend [a], [m];
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16em;
+  width: 40em;
+  background: var(--colour-yellow-100);
+  border: solid 12px var(--colour-blue);
+  outline: solid 4px white;
+  box-shadow: -2px 2px 0 2px rgba(0, 0, 0, 0.06);
+
+  #countdown {
+    position: absolute;
+    bottom: -10em;
+    color: rgba(0, 0, 0, 0.18);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .lidl-text {
+    @extend [a];
+
+    top: -2em;
+    line-height: 1;
+    color: #00529c;
+    font-size: 6em;
+    font-weight: 800;
+    text-shadow: -2px 2px 0 rgba(0, 0, 0, 0.1);
+
+    .the-i {
+      display: inline-block;
+      position: absolute;
+      transform: rotate(-45deg);
+      color: var(--colour-red);
+      margin: 0 0 0 -0.1em;
+      font-size: 1.1em;
+    }
+  }
+
+  .time {
+    font-size: 8em;
+    font-weight: 700;
+    color: white;
+  }
+
+  .mover-1 {
+    position: absolute;
+    top: -5em;
+    left: calc(100% + 4em);
+    border-radius: 24px;
+    width: 1em;
+    height: 1em;
+    background: white;
+
+    animation: mover-1 2s ease infinite;
+  }
+}
+
+@keyframes mover-1 {
+  0% {
+    top: -5em;
+    left: calc(100% + 4em);
+    height: 1em;
+    width: 1em;
+  }
+
+  10% {
+    height: 1em;
+    width: 10em;
+  }
+
+  25% {
+    top: -5em;
+    left: -5em;
+    height: 1em;
+    width: 1em;
+  }
+
+  35% {
+    width: 1em;
+    height: 4em;
+  }
+
+  50% {
+    width: 1em;
+    height: 1em;
+    left: -5em;
+    top: calc(100% + 4em);
+  }
+
+  60% {
+    height: 1em;
+    width: 10em;
+  }
+
+  75% {
+    height: 1em;
+    width: 1em;
+    top: calc(100% + 4em);
+    left: calc(100% + 4em);
+  }
+
+  85% {
+    height: 4em;
+    width: 1em;
+  }
+
+  100% {
+    top: -5em;
+    left: calc(100% + 4em);
+  }
+}
+
+@keyframes blink {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: transparent;
+  }
+
+  100% {
+    color: white;
+  }
+}
