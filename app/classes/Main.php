@@ -2,11 +2,11 @@
 
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
+# use PHPMailer\PHPMailer\PHPMailer;
 
 # auto load composer libs
-include $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config/definitions.php";
+include ROOT . "/vendor/autoload.php";
 
 
 $M = new Main($pdo);
@@ -245,80 +245,82 @@ class Main extends Db
     return false;
   }
 
-  public function trySendMail($address, $subject, $body, $web_information)
-  {
+  //   public function trySendMail($address, $subject, $body, $web_information)
+  //   {
 
-    # get environment
-    $environment = $this->getEnvironment();
+  //     # get environment
+  //     $environment = $this->getEnvironment();
 
-    # check current environment and get correct connection.json
-    $smtp_connection_file = PREROOT . "/config/mail/smtp.connection." . $environment . ".json";
+  //     # check current environment and get correct connection.json
+  //     $smtp_connection_file = PREROOT . "/config/mail/smtp.connection." . $environment . ".json";
 
-    # validate file existence
-    if (!file_exists($smtp_connection_file))
-      throw new Exception("💔 Configuration-file in 📂/config/mail should match 📄smtp.connection.*ENVIRONMENT*.json ❗️");
+  //     # validate file existence
+  //     if (!file_exists($smtp_connection_file))
+  //       throw new Exception("💔 Configuration-file in 📂/config/mail should match 📄smtp.connection.*ENVIRONMENT*.json ❗️");
 
-    // get login infromation from outsourced file
-    $mail_config = (object) $this->convertFromFile($smtp_connection_file)->connect;
+  //     // get login infromation from outsourced file
+  //     $mail_config = (object) $this->convertFromFile($smtp_connection_file)->connect;
 
-    //Create an instance; passing `true` enables exceptions
-    $mail = new PHPMailer(true);
+  //     //Create an instance; passing `true` enables exceptions
+  //     $mail = new PHPMailer(true);
 
-    // SMTP needs accurate times, and the PHP time zone MUST be set
-    // This should be done in your php.ini, but this is how to do it if you don't have access to that
-    date_default_timezone_set('Etc/UTC');
+  //     // SMTP needs accurate times, and the PHP time zone MUST be set
+  //     // This should be done in your php.ini, but this is how to do it if you don't have access to that
+  //     date_default_timezone_set('Etc/UTC');
 
-    // Server settings
-    $mail->isSMTP(); // Send using SMTP
-    # $mail->SMTPDebug = PHPMailer::SMTP::DEBUG_SERVER;
-    $mail->Host = $mail_config->smtp->host;
-    $mail->Port = 465;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->SMTPAuth = true;
-    $mail->Username = $mail_config->smtp->username;
-    $mail->Password = $mail_config->smtp->password;
-    // $mail->AuthType = 'XOAUTH2';
+  //     // Server settings
+  //     $mail->isSMTP(); // Send using SMTP
+  //     # $mail->SMTPDebug = PHPMailer::SMTP::DEBUG_SERVER;
+  //     $mail->Host = $mail_config->smtp->host;
+  //     $mail->Port = 465;
+  //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+  //     $mail->SMTPAuth = true;
+  //     $mail->Username = $mail_config->smtp->username;
+  //     $mail->Password = $mail_config->smtp->password;
+  //     // $mail->AuthType = 'XOAUTH2';
 
-    // Create and pass GoogleOauthClient to PHPMailer
-    // $oauthTokenProvider = new \GoogleOauthClient(
-    //     'someone@gmail.com',
-    //     'path/to/gmail-xoauth2-credentials.json',
-    //     'path/to/gmail-xoauth-token.json'
-    // );
-    // $mail->setOAuth($oauthTokenProvider);
+  //     // Create and pass GoogleOauthClient to PHPMailer
+  //     // $oauthTokenProvider = new \GoogleOauthClient(
+  //     //     'someone@gmail.com',
+  //     //     'path/to/gmail-xoauth2-credentials.json',
+  //     //     'path/to/gmail-xoauth-token.json'
+  //     // );
+  //     // $mail->setOAuth($oauthTokenProvider);
 
-    // Recipients
-    $mail->setFrom('noreply@thinkquotes.de', $web_information->name);
-    $mail->addAddress($address);
+  //     // Recipients
+  //     $mail->setFrom('noreply@thinkquotes.de', $web_information->name);
+  //     $mail->addAddress($address);
 
-    // Content
-    $mail->isHTML(true); // Set email format to HTML
-    $mail->CharSet = PHPMailer::CHARSET_UTF8;
-    $mail->Subject = $subject;
-    $mail->Body = $body;
-    # $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+  //     // Content
+  //     $mail->isHTML(true); // Set email format to HTML
+  //     $mail->CharSet = PHPMailer::CHARSET_UTF8;
+  //     $mail->Subject = $subject;
+  //     $mail->Body = $body;
+  //     # $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-    try {
+  //     try {
 
-      $mail->send();
+  //       $mail->send();
 
-      return true;
-    } catch (Exception $e) {
+  //       return true;
+  //     } catch (Exception $e) {
 
-      $errorInformation = (object) [
-        "status" => false,
-        "code" => $e->getCode(),
-        "message" => $e->getMessage(),
-        "response" => $mail->ErrorInfo
-      ];
+  //       $errorInformation = (object) [
+  //         "status" => false,
+  //         "code" => $e->getCode(),
+  //         "message" => $e->getMessage(),
+  //         "response" => $mail->ErrorInfo
+  //       ];
 
-      return $errorInformation;
-    }
-  }
+  //       return $errorInformation;
+  //     }
+  //   }
 
-  # just throw new errors with a certain message abbreviated
-  public static function amk($message)
-  {
-    throw new Exception($message);
-  }
+  //   # just throw new errors with a certain message abbreviated
+  //   public static function amk($message)
+  //   {
+  //     throw new Exception($message);
+  //   }
+  // }
+
 }

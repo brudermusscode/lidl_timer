@@ -1,0 +1,20 @@
+.blink {
+  color: white;
+  animation: blink 2s ease infinite;
+  margin: 0 0.2em;
+  opacity: 1;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

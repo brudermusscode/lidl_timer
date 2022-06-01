@@ -1,0 +1,26 @@
+box-model {
+  display: block;
+
+  &.rounded {
+    @extend .rd12;
+  }
+
+  &.shadowed {
+    @extend .mshd-1;
+  }
+
+  &.light {
+    background: var(--colour-light);
+    color: var(--colour-dark);
+  }
+
+  &.dark {
+    background: var(--colour-dark);
+    color: var(--colour-light);
+  }
+
+  &.white {
+    background: white;
+    color: var(--colour-dark);
+  }
+}

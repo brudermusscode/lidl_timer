@@ -10,7 +10,7 @@ $get_content = file_get_contents(ROOT . "/time.json");
 $json = json_decode($get_content, true);
 $time = $json['time'];
 
-$time = preg_replace('/:/', '<span blink>:</span>', $time);
+$time = preg_replace('/:/', '<span class=blink>:</span>', $time);
 
 $current_time = time();
 
@@ -32,10 +32,5 @@ include_once TEMPLATE . "/layout/header.php";
     Countdown coming soon
   </div>
 </s>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  // implement countdown
-</script>
 
 <?php include_once TEMPLATE . "/layout/header.php"; ?>
