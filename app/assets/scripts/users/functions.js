@@ -1,17 +1,24 @@
 // defines functionality related to user accounts
 jQuery(function () {
+  let url, formData;
+  let body = $('body');
+
   $(document)
 
     // login
     .on("submit", '[data-form="users,login"]', function () {
 
       let $t = $(this);
-      let formData = new FormData(this);
+      formData = new FormData(this);
 
       console.log('Init user login...');
 
+      // define ajax url
+      url = '/do/users/login';
+
       $.ajax({
         data: formData,
+        url: url,
         method: $t.attr("method"),
         dataType: "JSON",
         // important for using formData
@@ -21,9 +28,7 @@ jQuery(function () {
         success: (data) => {
           console.log(data);
 
-          if (data.status) {
-            // do something
-          }
+          responder.add(body, data.message);
         },
         error: (data) => {
           console.error(data);

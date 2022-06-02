@@ -5,3 +5,5 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
 if(empty($_POST['mail']) || LOGGED) exit(NULL);
+
+exit(json_encode($return));

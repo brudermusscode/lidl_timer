@@ -16,6 +16,8 @@ if (!$page) header(NOT_FOUND);
 
   <!--- hacks --->
   <script src="<?php echo SCRIPT . "/jquery.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/classes/Overlay.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/classes/Responder.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/application.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/users/functions.min.js"; ?>"></script>
 </head>

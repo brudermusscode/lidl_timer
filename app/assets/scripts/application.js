@@ -11,4 +11,5 @@ jQuery(function () {
 
       $form.trigger('submit');
     });
+
 });

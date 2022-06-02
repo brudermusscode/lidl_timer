@@ -56,5 +56,8 @@ RewriteRule ^ /%1 [R=301,L]
 # set root path
 RewriteRule ^$ /app/templates/home/index.php [NC,L]
 
+# a
+RewriteRule ^do/(.*) /app/functions/$1 [NC,L]
+
 # users
 RewriteRule ^u/(.*) /app/templates/users/$1 [NC,L]

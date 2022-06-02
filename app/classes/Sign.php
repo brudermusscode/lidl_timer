@@ -1,9 +1,14 @@
 <?php
+# this file defines and initializes the Sign class which will hold all
+# essential methods for signing users in, out and up
 
+// require Main class
 include_once "Main.php";
 
+// initialize Sign class
 $Sign = new Sign($_SESSION, $_COOKIE);
 
+// define Sign class
 class Sign extends Main
 {
 

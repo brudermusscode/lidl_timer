@@ -1,16 +1,19 @@
 <?php
+# this file holds essentials methods for using to query the database
+# and interact with the application
 
-// Import PHPMailer classes into the global namespace
-// These must be at the top of your script, not inside a function
+# Import PHPMailer classes into the global namespace
+# These must be at the top of your script, not inside a function
 # use PHPMailer\PHPMailer\PHPMailer;
 
 # auto load composer libs
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config/definitions.php";
 include ROOT . "/vendor/autoload.php";
 
-
+# init the Main class
 $M = new Main($pdo);
 
+# define the Main class
 class Main extends Db
 {
 
@@ -316,9 +319,9 @@ class Main extends Db
   //     }
   //   }
 
-    # just throw new errors with a certain message abbreviated
-    public static function amk($message)
-    {
-      throw new Exception($message);
-    }
+  # just throw new errors with a certain message abbreviated
+  public static function amk($message)
+  {
+    throw new Exception($message);
   }
+}

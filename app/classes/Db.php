@@ -1,7 +1,10 @@
 <?php
+# this class will hold all essentials methods for building a solid database connection
 
+# require definitions for this class
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config/definitions.php";
 
+# define Db class
 class Db
 {
 
