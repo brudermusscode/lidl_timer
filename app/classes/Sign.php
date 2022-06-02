@@ -2,21 +2,12 @@
 # this file defines and initializes the Sign class which will hold all
 # essential methods for signing users in, out and up
 
-// require Main class
-include_once "Main.php";
-
 // initialize Sign class
-$Sign = new Sign($_SESSION, $_COOKIE);
+$Sign = new Sign($pdo, $_SESSION, $_COOKIE);
 
 // define Sign class
 class Sign extends Main
 {
-
-    public function __construct(array $session, array $cookies)
-    {
-        $this->session = (object) $session;
-        $this->cookies = (object) $cookies;
-    }
 
     // check login state for user
     public function isAuthed()
@@ -98,8 +89,9 @@ class Sign extends Main
         # $this->pdo->beginTransaction();
 
         # try to create a new session with serial-data
-        $insert = $this->pdo->prepare("INSERT INTO users_sessions (uid, token, serial) VALUES (?, ?, ?)");
-        $insert = $this->execute($insert, [$serial->uid, $serial->token, $serial->serial], $this->pdo, $commit);
+        $q = "INSERT INTO user_sessions (user_id, token, serial) VALUES (?, ?, ?)";
+        $p = (array) [$serial->uid, $serial->token, $serial->serial];
+        $insert = $this->insert($q, $p, $commit);
 
         if (!$insert->status) return false;
 
@@ -164,33 +156,33 @@ class Sign extends Main
         session_destroy();
     }
 
-    // return real estate client ip
-    // public static function getRemoteAddress()
-    // {
-    //     if (!isset($_SERVER['REMOTE_ADDR'])) {
-    //         return NULL;
-    //     }
+    # return real estate client ip
+    public static function getRemoteAddress()
+    {
+        if (!isset($_SERVER['REMOTE_ADDR'])) {
+            return NULL;
+        }
 
-    //     $proxy_header = "HTTP_X_FORWARDED_FOR";
-    //     $trusted_proxies = ["2001:db8::1", "192.168.50.1"];
+        $proxy_header = "HTTP_X_FORWARDED_FOR";
+        $trusted_proxies = ["2001:db8::1", "192.168.50.1"];
 
-    //     if (in_array($_SERVER['REMOTE_ADDR'], $trusted_proxies)) {
+        if (in_array($_SERVER['REMOTE_ADDR'], $trusted_proxies)) {
 
-    //         if (array_key_exists($proxy_header, $_SERVER)) {
+            if (array_key_exists($proxy_header, $_SERVER)) {
 
-    //             $proxy_list = explode(",", $_SERVER[$proxy_header]);
-    //             $client_ip = trim(end($proxy_list));
+                $proxy_list = explode(",", $_SERVER[$proxy_header]);
+                $client_ip = trim(end($proxy_list));
 
-    //             if (filter_var($client_ip, FILTER_VALIDATE_IP)) {
-    //                 return $client_ip;
-    //             } else {
-    //                 // Validation failed - beat the guy who configured the proxy or
-    //                 // the guy who created the trusted proxy list?
-    //                 // TODO: some error handling to notify about the need of punishment
-    //             }
-    //         }
-    //     }
+                if (filter_var($client_ip, FILTER_VALIDATE_IP)) {
+                    return $client_ip;
+                } else {
+                    // Validation failed - beat the guy who configured the proxy or
+                    // the guy who created the trusted proxy list?
+                    // TODO: some error handling to notify about the need of punishment
+                }
+            }
+        }
 
-    //     return $_SERVER['REMOTE_ADDR'];
-    // }
+        return $_SERVER['REMOTE_ADDR'];
+    }
 }

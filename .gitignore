@@ -3,6 +3,7 @@
 
 # configuration
 /config/ftp
+/config/mail
 /config/db/connection.prod.json
 
 # dependencies

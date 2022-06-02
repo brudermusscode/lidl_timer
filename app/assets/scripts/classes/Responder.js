@@ -1,4 +1,4 @@
-let responder_close_timeout;
+let __responder_close_timeout;
 
 class Responder {
   add(append, message) {
@@ -11,7 +11,7 @@ class Responder {
       console.log('Found Responder, manipulating...');
 
       // clear timeout for closing and hiding current responder
-      clearTimeout(responder_close_timeout);
+      clearTimeout(__responder_close_timeout);
 
       // start manipulating current responder...
       $responder = $append.find('responder:not(.deleted)');
@@ -42,8 +42,8 @@ class Responder {
       }, 100);
 
       // set close timeout
-      responder_close_timeout = setTimeout(() => {
-        this.close($responder)
+      __responder_close_timeout = setTimeout(() => {
+        this.close($responder);
       }, 6000);
 
       // add repsonder element to array
@@ -60,15 +60,15 @@ class Responder {
 
     // manipulate responder
     $responder.removeClass("active");
-    $responder.find("r-inr").html(message);
 
     // show responder after timeout
     setTimeout(() => {
+     $responder.find("r-inr").html(message);
       $responder.addClass("active");
     }, 300);
 
     // set close timeout
-    responder_close_timeout = setTimeout(() => {
+    __responder_close_timeout = setTimeout(() => {
       this.close($responder);
     }, 6000);
 

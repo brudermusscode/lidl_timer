@@ -11,8 +11,6 @@ jQuery(function () {
       let $t = $(this);
       formData = new FormData(this);
 
-      console.log('Init user login...');
-
       // define ajax url
       url = '/do/users/login';
 
