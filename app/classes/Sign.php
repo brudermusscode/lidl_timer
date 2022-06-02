@@ -128,13 +128,9 @@ class Sign extends Main
         if (!$this->isAuthed()) return false;
 
         // get user data and compare to current session data
-        $query =
-            "SELECT *, users.id AS id
-            FROM users u
-            JOIN users_settings us ON u.id = us.uid
-            WHERE u.id = ?
-            LIMIT 1";
-        $stmt = $this->select($query, [$this->session->id], false);
+        $q = "SELECT * FROM users WHERE id = ? LIMIT 1";
+        $p = (array) [$this->session->id];
+        $stmt = $this->select($q, $p, false);
 
         # return false if statement fails
         if (!$stmt->status) return false;

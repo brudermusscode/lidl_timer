@@ -55,7 +55,41 @@ $authentication_array = (object) [
 # BEGIN THE MOFUFGASDKLFJSDLKFJ TRANSACTIION
 $pdo->beginTransaction();
 
-# create session, user is authenticated
+# verify user
+if(!$get_user_authentication->fetch->verified_at) {
+  $q = "UPDATE users SET verified_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
+  $p = (array) [$user_id];
+  $verify_user = $M->update($q, $p, false);
+
+  if (!$verify_user->status) {
+    $return->message = get_msg(5);
+    exit(json_encode($return));
+  }
+}
+
+# check if session exists
+$q = "SELECT * FROM user_sessions WHERE user_id = ? LIMIT 1";
+$p = (array) [$user_id];
+$get_user_session = $M->select($q, $p, false);
+
+if(!$get_user_authentication->status) {
+  $return->message = get_msg(2);
+  exit(json_encode($return));
+}
+
+if($get_user_session->stmt->rowCount() > 0) {
+  # update current session entry
+  $q = "DELETE FROM user_sessions WHERE user_id = ?";
+  $p = (array) [$user_id];
+  $delete_user_session = $M->delete($q, $p, false);
+
+  if (!$delete_user_session->status) {
+    $return->message = get_msg(6);
+    exit(json_encode($return));
+  }
+}
+
+# create a new session entry
 $create_session = $Sign->createSession($get_user_authentication->fetch, $authentication_array, false, false);
 
 if (!$create_session) {
@@ -85,5 +119,6 @@ function get_msg(int $msg_code) {
   if ($msg_code == 2) return 'This key is invalid';
   if ($msg_code == 3) return 'Problem creating new session, please go back and request a new code';
   if ($msg_code == 4) return 'Could not update authentications, please request a new code';
-  if ($msg_code == 5) return '';
+  if ($msg_code == 5) return 'Could not verify your account, please request a new code!';
+  if ($msg_code == 6) return 'Could not create a session, please request a new code!';
 }
