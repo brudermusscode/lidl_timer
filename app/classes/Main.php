@@ -316,11 +316,9 @@ class Main extends Db
   //     }
   //   }
 
-  //   # just throw new errors with a certain message abbreviated
-  //   public static function amk($message)
-  //   {
-  //     throw new Exception($message);
-  //   }
-  // }
-
-}
+    # just throw new errors with a certain message abbreviated
+    public static function amk($message)
+    {
+      throw new Exception($message);
+    }
+  }

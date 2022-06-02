@@ -15,6 +15,7 @@ if ($db->getEnvironment() == 'dev') $dev_env = true;
 
 # include required classes
 include_once ROOT . "/app/classes/Main.php";
+include_once ROOT . "/app/classes/Sign.php";
 
 # get system settings
 # TODO: outsource into class and just call a function
@@ -49,3 +50,19 @@ $return = (object) [
     "session" => $_SESSION
   ]
 ];
+
+// define
+define("LOGGED", $Sign->isAuthed());
+
+// user object
+$my = (object) [
+  "uid" => 0
+];
+
+if (LOGGED) {
+  # reset session and get new settings
+  $my = $Sign->resetSession();
+
+  # objectifcy $_SESSION and put into $my for shoter use
+  $my = (object) $_SESSION;
+}

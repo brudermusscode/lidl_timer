@@ -1,6 +1,38 @@
 @charset "UTF-8";
 @import "variables.scss";
 
+[rounded] {
+  @extend .rd12;
+
+  &[rounded="smol"] {
+    @extend .rd6;
+  }
+
+  &[rounded="std"] {
+    @extend .rd12;
+  }
+
+  &[rounded="mid"] {
+    @extend .rd18;
+  }
+
+  &[rounded="wide"] {
+    @extend .rd24;
+  }
+}
+
+[shadowed] {
+  @extend .mshd-1;
+
+  &[shadowed="mid"] {
+    @extend .mshd-2;
+  }
+
+  &[shadowed="wide"] {
+    @extend .mshd-3;
+  }
+}
+
 /* sort by time */
 .animate-height {
   height: 0px;
@@ -220,6 +252,11 @@
   }
 }
 
+[w600c] {
+  width: 100%;
+  max-width: 600px;
+}
+
 // display properties
 .disib {
   display: inline-block;
@@ -258,6 +295,10 @@
 .flRowWrap {
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.flb100 {
+  flex-basis: 100%;
 }
 
 // positioning

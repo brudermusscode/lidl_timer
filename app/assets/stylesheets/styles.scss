@@ -1,68 +1,86 @@
+@import "remixicons.scss";
 @import "variables.scss";
 @import "classes.scss";
 @import "animations.scss";
 @import "elements.scss";
 @import "@countdown.scss";
 
-/* comfortaa-regular - latin */
+/* baloo-2-regular - latin */
 @font-face {
-  font-family: "Comfortaa";
+  font-family: "Baloo 2";
   font-style: normal;
   font-weight: 400;
-  src: url("../../fonts/comfortaa/comfortaa-v38-latin-regular.eot");
-  /* IE9 Compat Modes */
+  src: url("../../fonts/baloo2/baloo-2-v12-latin-regular.eot"); /* IE9 Compat Modes */
   src: local(""),
-    url("../../fonts/comfortaa/comfortaa-v38-latin-regular.eot?#iefix")
+    url("../../fonts/baloo2/baloo-2-v12-latin-regular.eot?#iefix")
       format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../fonts/comfortaa/comfortaa-v38-latin-regular.woff2")
+    /* IE6-IE8 */ url("../../fonts/baloo2/baloo-2-v12-latin-regular.woff2")
       format("woff2"),
     /* Super Modern Browsers */
-      url("../../fonts/comfortaa/comfortaa-v38-latin-regular.woff")
-      format("woff"),
+      url("../../fonts/baloo2/baloo-2-v12-latin-regular.woff") format("woff"),
     /* Modern Browsers */
-      url("../../fonts/comfortaa/comfortaa-v38-latin-regular.ttf")
-      format("truetype"),
+      url("../../fonts/baloo2/baloo-2-v12-latin-regular.ttf") format("truetype"),
     /* Safari, Android, iOS */
-      url("../../fonts/comfortaa/comfortaa-v38-latin-regular.svg#Comfortaa")
-      format("svg");
-  /* Legacy iOS */
+      url("../../fonts/baloo2/baloo-2-v12-latin-regular.svg#Baloo2")
+      format("svg"); /* Legacy iOS */
 }
 
-/* comfortaa-700 - latin */
+/* baloo-2-800 - latin */
 @font-face {
-  font-family: "Comfortaa";
+  font-family: "Baloo 2";
   font-style: normal;
-  font-weight: 700;
-  src: url("../../fonts/comfortaa/comfortaa-v38-latin-700.eot");
-  /* IE9 Compat Modes */
+  font-weight: 800;
+  src: url("../../fonts/baloo2/baloo-2-v12-latin-800.eot"); /* IE9 Compat Modes */
   src: local(""),
-    url("../../fonts/comfortaa/comfortaa-v38-latin-700.eot?#iefix")
+    url("../../fonts/baloo2/baloo-2-v12-latin-800.eot?#iefix")
       format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../fonts/comfortaa/comfortaa-v38-latin-700.woff2")
+    /* IE6-IE8 */ url("../../fonts/baloo2/baloo-2-v12-latin-800.woff2")
       format("woff2"),
     /* Super Modern Browsers */
-      url("../../fonts/comfortaa/comfortaa-v38-latin-700.woff") format("woff"),
-    /* Modern Browsers */
-      url("../../fonts/comfortaa/comfortaa-v38-latin-700.ttf")
+      url("../../fonts/baloo2/baloo-2-v12-latin-800.woff") format("woff"),
+    /* Modern Browsers */ url("../../fonts/baloo2/baloo-2-v12-latin-800.ttf")
       format("truetype"),
     /* Safari, Android, iOS */
-      url("../../fonts/comfortaa/comfortaa-v38-latin-700.svg#Comfortaa")
-      format("svg");
-  /* Legacy iOS */
+      url("../../fonts/baloo2/baloo-2-v12-latin-800.svg#Baloo2") format("svg"); /* Legacy iOS */
+}
+
+/* baloo-2-700 - latin */
+@font-face {
+  font-family: "Baloo 2";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../../fonts/baloo2/baloo-2-v12-latin-700.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../../fonts/baloo2/baloo-2-v12-latin-700.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../../fonts/baloo2/baloo-2-v12-latin-700.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../../fonts/baloo2/baloo-2-v12-latin-700.woff") format("woff"),
+    /* Modern Browsers */ url("../../fonts/baloo2/baloo-2-v12-latin-700.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../../fonts/baloo2/baloo-2-v12-latin-700.svg#Baloo2") format("svg"); /* Legacy iOS */
 }
 
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
 }
 
 body {
-  font-family: "Comfortaa", cursive;
-  font-size: 100%;
+  font-family: "Baloo 2", cursive;
   background-color: $yellow-100;
-  color: $light;
-  letter-spacing: 0.2em;
+  color: $dark;
+  font-size: 1em;
+  line-height: 1.4em;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -91,11 +109,15 @@ main {
     max-width: $main-mid-width;
   }
 
-  &.single {
+  &.smol {
     max-width: $main-smol-width;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: $gap-std;
+  }
+
+  &.single {
+    max-width: $main-single-width;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // gap: $gap-std;
   }
 }

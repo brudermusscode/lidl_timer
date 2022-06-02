@@ -1,26 +1,317 @@
+logo {
+  display: block;
+  line-height: 1;
+  color: $blue;
+  font-size: 6em;
+  font-weight: 800;
+  text-shadow: -2px 2px 0 rgba(0, 0, 0, 0.1);
+
+  .logo-spacer {
+    display: inline-block;
+    margin-left: 0.24em;
+  }
+
+  .the-i {
+    display: inline-block;
+    position: absolute;
+    transform: rotate(-45deg);
+    color: $red;
+    margin: 0.04em 0 0 -0.16em;
+    font-size: 1em;
+  }
+}
+
 box-model {
   display: block;
 
-  &.rounded {
-    @extend .rd12;
-  }
-
-  &.shadowed {
+  &[shadowed] {
     @extend .mshd-1;
+
+    &[shadowed="std"] {
+      @extend .mshd-1;
+    }
+
+    &[shadowed="mid"] {
+      @extend .mshd-2;
+    }
+
+    &[shadowed="wide"] {
+      @extend .mshd-3;
+    }
   }
 
-  &.light {
+  &[light] {
     background: var(--colour-light);
     color: var(--colour-dark);
   }
 
-  &.dark {
+  &[dark] {
     background: var(--colour-dark);
     color: var(--colour-light);
   }
 
-  &.white {
+  &[white] {
     background: white;
     color: var(--colour-dark);
+  }
+
+  bm-inr {
+    display: block;
+
+    &[smol] {
+      padding: 1em 1.4em;
+    }
+
+    &[std] {
+      padding: 1.6em 2em;
+    }
+
+    &[wide] {
+      padding: 3em 3.4em;
+    }
+  }
+}
+
+label {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 1.2em;
+  line-height: 1.6em;
+
+  &[big] {
+    font-size: 2em;
+    font-weight: 700;
+  }
+
+  &[centered] {
+    @extend .tac;
+  }
+
+  &[dark] {
+    color: $dark;
+  }
+
+  &[light] {
+    color: $light;
+  }
+}
+
+input {
+  border: none;
+  outline: none;
+  color: $dark;
+
+  @extend .tran-all;
+
+  &[slight] {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 0 1.6em;
+    line-height: 3.2em;
+    font-weight: 400;
+
+    &:focus {
+      border: 1px solid $blue;
+      outline: 2px solid $blue;
+    }
+  }
+
+  &[light] {
+    color: $dark;
+    background: $light;
+  }
+
+  &[dark] {
+    color: $light;
+    background: $dark;
+  }
+}
+
+button-model {
+  display: block;
+  position: relative;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: none;
+  transition: all 0.1s linear;
+  overflow: hidden;
+
+  @extend .tac;
+
+  // if the button has the attribute disabled
+  &[disabled] {
+    background: rgba(255, 255, 255, 0.28) !important;
+    color: var(--colour-dark) !important;
+  }
+
+  // if the button is not diabled
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  // hover and focus mode
+  &:hover,
+  &:focus {
+    outline: 0;
+    text-decoration: none;
+  }
+
+  // ----------
+  // a totally round button (just with an icon ofc)
+  // ---------------
+  [circled] {
+    border-radius: 50%;
+
+    &[circled="small"] {
+      height: 2em;
+      width: 2em;
+    }
+  }
+
+  [icon-only] {
+    width: 3em;
+    height: 3em;
+    padding: 0;
+    text-align: center;
+
+    i {
+      line-height: 1.8em;
+    }
+  }
+
+  // ----------
+  // light or dark modes of the buttons
+  // ---------------
+  [light] {
+    color: $dark;
+  }
+
+  [dark] {
+    color: $light;
+  }
+
+  // ----------
+  // shadow behaviour
+  // ----------
+  &[hover-shadowed] {
+    &:hover {
+      @extend .mshd-2;
+    }
+
+    &:active {
+      @extend .mshd-1;
+    }
+  }
+
+  [text-shadowed] {
+    text-shadow: 0 1px 1.6px rgba(0, 0, 0, 0.42);
+
+    &[text-shadowed="blurred"] {
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.24);
+    }
+  }
+
+  // ----------
+  // sizes
+  // ----------
+  &[size] {
+    &[size="wide"] {
+      padding: 0 2.2em;
+      line-height: 3.4em;
+    }
+
+    &[size="smol"] {
+      padding: 0.01em 1.2em;
+    }
+  }
+
+  &.wholebottom {
+    position: relative;
+    line-height: 2.8em;
+    text-align: center;
+    font-size: 1em;
+    width: 100%;
+    text-shadow: 0 2px 1px rgba(100, 108, 114, 0.42);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0);
+      transition: all 0.1s linear;
+    }
+
+    &:hover {
+      &::before {
+        background-color: rgba(0, 0, 0, 0.12);
+      }
+    }
+
+    &:active {
+      &::before {
+        background-color: rgba(0, 0, 0, 0.24);
+      }
+    }
+  }
+
+  // ----------
+  // colors
+  // ----------
+  &[color] {
+    &[color="light"] {
+      background-color: $light;
+      color: $dark;
+    }
+
+    &[color="green"] {
+      background-color: green;
+      color: $light;
+    }
+
+    &[color="pink"] {
+      background-color: pink;
+      color: $light;
+    }
+
+    &[color="red"] {
+      background-color: $red;
+      color: $light;
+    }
+
+    &[color="darkred"] {
+      background-color: darkred;
+      color: $light;
+    }
+
+    &[color="blue"] {
+      background-color: $blue;
+      color: $light;
+    }
+
+    &[color="lila"] {
+      background-color: purple;
+      color: $light;
+    }
+
+    &[color="grey"] {
+      background-color: grey;
+      color: $light;
+    }
+
+    &[color="orange"] {
+      background-color: orange;
+      color: $light;
+    }
+  }
+
+  .icon i::before {
+    margin-top: 12px;
   }
 }

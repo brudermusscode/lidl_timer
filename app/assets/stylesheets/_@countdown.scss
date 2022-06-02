@@ -20,23 +20,9 @@ s {
   }
 
   .lidl-text {
+    top: -14em;
+
     @extend .posabs;
-
-    top: -2em;
-    line-height: 1;
-    color: $blue;
-    font-size: 6em;
-    font-weight: 800;
-    text-shadow: -2px 2px 0 rgba(0, 0, 0, 0.1);
-
-    .the-i {
-      display: inline-block;
-      position: absolute;
-      transform: rotate(-45deg);
-      color: $red;
-      margin: 0 0 0 -0.1em;
-      font-size: 1.1em;
-    }
   }
 
   .time {

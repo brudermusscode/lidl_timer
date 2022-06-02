@@ -21,7 +21,13 @@ include_once TEMPLATE . "/layout/header.php";
 
 <s>
   <div class="lidl-text">
-    <p>L<span class="the-i">i</span>&nbsp;DL</p>
+    <logo>
+      <p>
+        L
+        <span class="the-i">i</span>
+        <span class="logo-spacer">DL</span>
+      </p>
+    </logo>
   </div>
   <div class="mover-1"></div>
   <div class="time">
