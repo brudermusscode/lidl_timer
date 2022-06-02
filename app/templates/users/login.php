@@ -3,6 +3,8 @@
 # require database connection
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
+if (LOGGED) header('location: /');
+
 # init page
 $page = 'user/login';
 
@@ -21,4 +23,4 @@ include_once TEMPLATE . '/layout/header.php'; ?>
   <?php include_once TEMPLATE . "/users/session/_login_container.php"; ?>
 </div>
 
-<?php include_once TEMPLATE . '/layout/header.php'; ?>
+<?php include_once TEMPLATE . '/layout/footer.php'; ?>

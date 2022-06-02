@@ -28,7 +28,7 @@ class Sign extends Main
         }
 
         // get session from database
-        $query = "SELECT * FROM users_sessions WHERE uid = ? AND token = ? AND serial = ?";
+        $query = "SELECT * FROM user_sessions WHERE user_id = ? AND token = ? AND serial = ?";
         $get_session_data = $this->select($query, [$session_id, $session_token, $session_serial]);
 
         if (!$get_session_data->stmt->rowCount() > 0) {
@@ -44,6 +44,13 @@ class Sign extends Main
     {
 
         if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+
+            $mail_explode = explode('@', $mail);
+
+            if($mail_explode[1] !== 'deltacity.net') {
+                return false;
+            }
+
             return true;
         }
 
@@ -75,7 +82,7 @@ class Sign extends Main
         (bool) $commit;
 
         # if underneath conditions mathc, jus5t reset the current session
-        if (!isset($serial->token, $serial->serial, $serial->uid) || $reset) {
+        if (!isset($serial->token, $serial->serial, $serial->user_id) || $reset) {
             // pass serial and token keys to fetch object
             $fetch->serial = $serial->serial;
             $fetch->token = $serial->token;
@@ -90,7 +97,7 @@ class Sign extends Main
 
         # try to create a new session with serial-data
         $q = "INSERT INTO user_sessions (user_id, token, serial) VALUES (?, ?, ?)";
-        $p = (array) [$serial->uid, $serial->token, $serial->serial];
+        $p = (array) [$serial->user_id, $serial->token, $serial->serial];
         $insert = $this->insert($q, $p, $commit);
 
         if (!$insert->status) return false;

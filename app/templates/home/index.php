@@ -39,4 +39,4 @@ include_once TEMPLATE . "/layout/header.php";
   </div>
 </s>
 
-<?php include_once TEMPLATE . "/layout/header.php"; ?>
+<?php include_once TEMPLATE . "/layout/footer.php"; ?>

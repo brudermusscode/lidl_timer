@@ -4,21 +4,13 @@
 # require database connection
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
-if(empty($_POST['mail']) || LOGGED) exit(NULL);
+if(empty($_POST['mail']) || LOGGED) exit(json_encode($return));
 
 $mail = (string) $_POST['mail'];
 
 // check if mail is legit
 if(!$Sign->validateMail($mail)) {
   $return->message = get_msg(1);
-  exit(json_encode($return));
-}
-
-// check if is deltacity mail
-$mail_explode = explode('@', $mail);
-
-if($mail_explode[1] !== 'deltacity.net') {
-  $return->message = get_msg(2);
   exit(json_encode($return));
 }
 
@@ -80,6 +72,7 @@ if (!$send_mail->status) {
 
 // prepare return
 $return->status = true;
+$return->mail = $mail;
 
 if ($dev_env) {
   $return->code = $code;
@@ -92,8 +85,7 @@ if ($dev_env) {
 exit(json_encode($return));
 
 function get_msg(int $msg_code) {
-  if($msg_code == 1) return 'You have entered an invalid mail address';
-  if($msg_code == 2) return 'Please use your <strong>deltacity.net</strong> mail address';
+  if($msg_code == 1) return 'Please use your <strong>deltacity.net</strong> mail address';
   if($msg_code == 3) return 'Could not create new account, please try again';
   if($msg_code == 4) return 'Could not create authentication, please try again';
   if($msg_code == 5) return 'Could not send verification mail, please try again';
