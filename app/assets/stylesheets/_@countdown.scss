@@ -63,9 +63,9 @@ s {
   }
 
   &.active {
-    background: $yellow-100;
-    border: solid 12px $blue;
-    outline: solid 4px $light;
+    background: $orange;
+    border: solid 2em $orange;
+    outline: solid 4px $blue-2;
     box-shadow: -2px 2px 0 2px rgba(0, 0, 0, 0.06);
 
     .time {

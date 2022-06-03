@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 $page = 'Index';
 
 $due_date = date('2022-06-03');
-$due_time = date('11:45:00');
+$due_time = date('12:00:00');
 $due = $due_date . ' ' . $due_time;
 
 include_once TEMPLATE . "/layout/head.php";
@@ -19,9 +19,7 @@ include_once TEMPLATE . "/layout/header.php";
   <div class="lidl-text">
     <logo>
       <p>
-        L
-        <span class="the-i">i</span>
-        <span class="logo-spacer">DL</span>
+        K + K
       </p>
     </logo>
   </div>
@@ -34,8 +32,8 @@ include_once TEMPLATE . "/layout/header.php";
     <div id="countdown_seconds" class="time-container"></div>
   </div>
 
-  <div class="countdown-desc disn">
-    Countdown coming soon
+  <div class="countdown-desc">
+    meeting at 12:00 AM
   </div>
 </s>
 
@@ -83,9 +81,9 @@ let x = setInterval(() => {
     element.play();
 
     // manipulate the countdown output
-    $output_hours.innerHTML = '🪄';
-    $output_minutes.innerHTML = '😍';
-    $output_seconds.innerHTML = '🎉';
+    $output_hours.innerHTML = '00';
+    $output_minutes.innerHTML = '00';
+    $output_seconds.innerHTML = '00';
 
     // clear the interval mate
     clearInterval(x);
