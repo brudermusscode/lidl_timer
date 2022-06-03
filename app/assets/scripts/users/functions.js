@@ -25,12 +25,14 @@ jQuery(function () {
 
           if (data.status) {
             $login_container = $t.closest('[login]').addClass('disn');
-            $login_container.next().css({
+            $code_container = $login_container.next()
+            $code_container.css({
               'opacity': 1,
               'display': 'block',
               'height': 'auto',
               'overflow': 'visible'
             });
+            $code_container.find('input[name="code"]').focus();
           }
 
           responder.add(body, data.message);
