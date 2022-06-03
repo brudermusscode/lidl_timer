@@ -32,6 +32,7 @@ jQuery(function () {
               'height': 'auto',
               'overflow': 'visible'
             });
+            $code_container.find('input[name="mail"]').val(data.mail);
             $code_container.find('input[name="code"]').focus();
           }
 

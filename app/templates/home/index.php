@@ -12,7 +12,9 @@ $time = $json['time'];
 
 $time = preg_replace('/:/', '<span class=blink>:</span>', $time);
 
-$current_time = time();
+$due_date = date('2022-06-03');
+$due_time = date('12:20:00');
+$due = $due_date . ' ' . $due_time;
 
 include_once TEMPLATE . "/layout/head.php";
 include_once TEMPLATE . "/layout/header.php";
@@ -30,13 +32,51 @@ include_once TEMPLATE . "/layout/header.php";
     </logo>
   </div>
   <div class="mover-1"></div>
-  <div class="time">
-    <p><?php echo $time; ?></p>
+  <div id="countdown" class="time">
+    <div id="countdown_hours" class="time-container"></div>
+    <p>:</p>
+    <div id="countdown_minutes" class="time-container"></div>
+    <p>:</p>
+    <div id="countdown_seconds" class="time-container"></div>
   </div>
 
-  <div id="countdown">
+  <div class="countdown-desc disn">
     Countdown coming soon
   </div>
 </s>
+
+<script>
+let $output_hours = document.getElementById('countdown_hours');
+let $output_minutes = document.getElementById('countdown_minutes');
+let $output_seconds = document.getElementById('countdown_seconds');
+let due = "<?php echo $due; ?>";
+let exact_due = new Date(due).getTime();
+
+let x = setInterval(() => {
+
+  let now = new Date().getTime();
+  let distance = exact_due - now;
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  hours = (hours < 10) ? '0' + hours : hours;
+  minutes = (minutes < 10) ? '0' + minutes : minutes;
+  seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+  $output_hours.innerHTML = hours;
+  $output_minutes.innerHTML = minutes;
+  $output_seconds.innerHTML = seconds;
+
+  if (distance < 0) {
+    // explosions
+
+
+    // clear the interval mate
+    clearInterval(x);
+  }
+}, 1000);
+</script>
 
 <?php include_once TEMPLATE . "/layout/footer.php"; ?>

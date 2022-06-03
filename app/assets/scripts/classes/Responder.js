@@ -8,7 +8,6 @@ class Responder {
 
     // check if responder is active already and return manipulation function
     if ($append.find("responder:not([deleted])").length) {
-      console.log('Found Responder, manipulating...');
 
       // clear timeout for closing and hiding current responder
       clearTimeout(__responder_close_timeout);
@@ -19,7 +18,6 @@ class Responder {
       // return manipulation function
       return this.manipulate($responder, message);
     } else {
-      console.log('No Responder found, adding new...');
 
       // append the responder to the append object
       // and pass message to it

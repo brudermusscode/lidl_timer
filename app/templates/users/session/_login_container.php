@@ -2,19 +2,18 @@
   <bm-inr wide>
     <div login>
       <label big dark centered>
-        <span>Login fren</span>
+        <span>Delta Login</span>
       </label>
 
       <div class="mb42">
-        <p class="tac mt12">No account?</p>
-        <p class="tac">Just login with your <strong>@deltacity.net</strong> address.</p>
+        <p class="tac">Hungry? Enter your details and get a verification code</p>
       </div>
 
       <form method="POST" data-form="users,login">
         <div class="inputs--outer">
           <div class="mb12">
-            <input type="email" name="mail" class="w100" placeholder="E-Mail address (@deltacity.net)" light slight
-              rounded autocomplete="true" />
+            <input autofocus type="email" name="mail" class="w100" placeholder="E-Mail address (@deltacity.net)" light
+              slight rounded autocomplete="true" />
           </div>
         </div>
 
@@ -28,6 +27,10 @@
           </button-model>
         </div>
       </form>
+
+      <div class="mt24">
+        <p class="tac mt12">No account? Just enter your <strong>@deltacity.net</strong> address.</p>
+      </div>
     </div>
 
     <div code style="opacity:0;transition:opacity .2s ease-out;height:0;overflow:hidden;">
@@ -43,8 +46,9 @@
       <form method="POST" data-form="users,login,verify_code">
         <div class="inputs--outer">
           <div class="mb12">
-            <input type="hidden" name="mail" value="js@deltacity.net" />
-            <input type="text" name="code" class="w100" placeholder="Verification code" light slight rounded autocomplete="true" />
+            <input type="hidden" name="mail" value="" />
+            <input type="text" name="code" class="w100" placeholder="Verification code" light slight rounded
+              autocomplete="true" />
           </div>
         </div>
 

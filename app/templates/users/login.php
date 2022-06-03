@@ -21,6 +21,7 @@ include_once TEMPLATE . '/layout/header.php'; ?>
   </logo>
 
   <?php include_once TEMPLATE . "/users/session/_login_container.php"; ?>
+  <p class="tac mt32"><?php echo date('Y'); ?> &copy; Deltacity</p>
 </div>
 
 <?php include_once TEMPLATE . '/layout/footer.php'; ?>
