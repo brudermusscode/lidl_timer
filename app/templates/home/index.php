@@ -6,12 +6,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 # set current page
 $page = 'Index';
 
-$get_content = file_get_contents(ROOT . "/time.json");
-$json = json_decode($get_content, true);
-$time = $json['time'];
-
-$time = preg_replace('/:/', '<span class=blink>:</span>', $time);
-
 $due_date = date('2022-06-03');
 $due_time = date('12:20:00');
 $due = $due_date . ' ' . $due_time;
@@ -34,9 +28,9 @@ include_once TEMPLATE . "/layout/header.php";
   <div class="mover-1"></div>
   <div id="countdown" class="time">
     <div id="countdown_hours" class="time-container"></div>
-    <p>:</p>
+    <p><span class=blink>:</span></p>
     <div id="countdown_minutes" class="time-container"></div>
-    <p>:</p>
+    <p><span class=blink>:</span></p>
     <div id="countdown_seconds" class="time-container"></div>
   </div>
 
@@ -45,6 +39,13 @@ include_once TEMPLATE . "/layout/header.php";
   </div>
 </s>
 
+<script>
+jQuery(function() {
+  setTimeout(() => {
+    $(document).find('s').addClass('active');
+  }, 2000);
+});
+</script>
 <script>
 let $output_hours = document.getElementById('countdown_hours');
 let $output_minutes = document.getElementById('countdown_minutes');
