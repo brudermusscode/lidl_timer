@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 $page = 'Index';
 
 $due_date = date('2022-06-03');
-$due_time = date('12:20:00');
+$due_time = date('11:45:00');
 $due = $due_date . ' ' . $due_time;
 
 include_once TEMPLATE . "/layout/head.php";
@@ -70,9 +70,22 @@ let x = setInterval(() => {
   $output_minutes.innerHTML = minutes;
   $output_seconds.innerHTML = seconds;
 
-  if (distance < 0) {
+  if (distance < 1) {
     // explosions
+    // -- do some explosions
 
+    // get audio
+    const audioContext = new AudioContext();
+    const element = document.querySelector('audio');
+    const source = audioContext.createMediaElementSource(element);
+
+    source.connect(audioContext.destination);
+    element.play();
+
+    // manipulate the countdown output
+    $output_hours.innerHTML = '🪄';
+    $output_minutes.innerHTML = '😍';
+    $output_seconds.innerHTML = '🎉';
 
     // clear the interval mate
     clearInterval(x);

@@ -23,3 +23,4 @@ if (!$page) header(NOT_FOUND);
 </head>
 
 <body>
+  <audio id="audio_mlg_horn" src='<?php echo SOUND . '/mlg_horn.mp3'; ?>'></audio>
