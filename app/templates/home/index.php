@@ -4,10 +4,10 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
 # set current page
-$page = 'Index';
+$page = 'home/index';
 
 $due_date = date('2022-06-03');
-$due_time = date('12:00:00');
+$due_time = date('20:00:00');
 $due = $due_date . ' ' . $due_time;
 
 include_once TEMPLATE . "/layout/head.php";
@@ -19,7 +19,9 @@ include_once TEMPLATE . "/layout/header.php";
   <div class="lidl-text">
     <logo>
       <p>
-        K + K
+        L
+        <span class=the-i>i</span>
+        <span class=logo-spacer>DL</span>
       </p>
     </logo>
   </div>
@@ -33,7 +35,7 @@ include_once TEMPLATE . "/layout/header.php";
   </div>
 
   <div class="countdown-desc">
-    meeting at 12:00 AM
+    meeting at 08:00 PM
   </div>
 </s>
 

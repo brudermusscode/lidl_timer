@@ -76,13 +76,19 @@ html {
 
 body {
   font-family: "Baloo 2", cursive;
-  background-color: $light;
+  background: $orange6;
   color: $dark;
   font-size: 1em;
   line-height: 1.4em;
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &.timer {
+    &.lidl {
+      background-color: $yellow-100;
+    }
+  }
 }
 
 :root {
@@ -99,10 +105,6 @@ main {
 
   &.wide {
     max-width: $main-wide-width;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: $gap-std;
   }
 
   &.mid {

@@ -61,3 +61,7 @@ RewriteRule ^do/(.*) /app/functions/$1 [NC,L]
 
 # users
 RewriteRule ^u/(.*) /app/templates/users/$1 [NC,L]
+
+# votes
+RewriteRule ^vote(.*) /app/templates/votes/index.php
+RewriteRule ^v/(.*) /app/templates/votes/$1

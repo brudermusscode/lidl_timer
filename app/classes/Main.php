@@ -27,6 +27,10 @@ class Main extends Db
   public function insert(string $query, array $params, bool $commit = false)
   {
 
+    (string) $query;
+    (array) $params;
+    (bool) $commit;
+
     try {
 
       # validate given parameters' types

@@ -332,12 +332,87 @@ button-model {
     }
 
     &[color="orange"] {
-      background-color: orange;
+      background-color: $orange;
       color: $light;
     }
   }
 
   .icon i::before {
     margin-top: 12px;
+  }
+}
+
+time-picker {
+  @extend .disbl;
+
+  $size: 3em;
+  $time-size: 2em;
+
+  .tp-inr {
+    gap: $gap-std;
+
+    @extend .disfl, .fldirrow, .flCenter;
+
+    .time {
+      &::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+
+      .show {
+        &:first-of-type {
+          margin-right: $gap-smol;
+        }
+
+        @extend .posrel, .lt;
+
+        input {
+          pointer-events: none;
+          height: 100%;
+          width: $time-size;
+          line-height: $time-size;
+          background: $orange3;
+          outline: 0;
+          border: 0;
+          padding: 0;
+          margin: 0;
+          font-size: 2.8em;
+          color: $dark;
+
+          @extend .rd24, .tac;
+        }
+      }
+    }
+
+    .arrow {
+      background: $orange5;
+      height: $size;
+      width: $size;
+      line-height: $size;
+      cursor: pointer;
+
+      @extend .rd18, .tran-all, .tac;
+
+      &:hover {
+        background: $orange4;
+      }
+
+      &:active {
+        background: $orange5;
+      }
+
+      &.right {
+        &:hover {
+          transform: translateX(4%);
+        }
+      }
+
+      &.left {
+        &:hover {
+          transform: translateX(-4%);
+        }
+      }
+    }
   }
 }

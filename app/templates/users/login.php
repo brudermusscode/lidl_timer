@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 if (LOGGED) header('location: /');
 
 # init page
-$page = 'user/login';
+$page = 'users/login';
 
 include_once TEMPLATE . '/layout/head.php';
 include_once TEMPLATE . '/layout/header.php'; ?>
