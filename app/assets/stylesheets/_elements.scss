@@ -67,18 +67,17 @@ box-model {
   }
 
   &[light] {
-    background: var(--colour-light);
-    color: var(--colour-dark);
+    background: $light;
+    color: $dark;
   }
 
   &[dark] {
-    background: var(--colour-dark);
-    color: var(--colour-light);
+    background: $dark;
+    color: $light;
   }
 
   &[white] {
     background: white;
-    color: var(--colour-dark);
   }
 
   bm-inr {
@@ -123,6 +122,16 @@ label {
   &[light] {
     color: $light;
   }
+
+  &[text-shadowed] {
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.38);
+  }
+
+  &[background] {
+    &[background="purple"] {
+      background: #4d2365;
+    }
+  }
 }
 
 input {
@@ -166,12 +175,6 @@ button-model {
   overflow: hidden;
 
   @extend .tac;
-
-  // if the button has the attribute disabled
-  &[disabled] {
-    background: rgba(255, 255, 255, 0.28) !important;
-    color: var(--colour-dark) !important;
-  }
 
   // if the button is not diabled
   &:not(:disabled) {
@@ -346,6 +349,12 @@ button-model {
   .icon i::before {
     margin-top: 12px;
   }
+
+  &[disabled] {
+    opacity: 0.6;
+    box-shadow: 0 !important;
+    cursor: default;
+  }
 }
 
 time-picker {
@@ -377,7 +386,7 @@ time-picker {
           position: absolute;
           text-transform: uppercase;
           font-size: 0.8em;
-          color: white;
+          color: rgba(255, 255, 255, 0.78);
 
           @extend .tac, .align-mid-horiz;
         }

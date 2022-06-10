@@ -2,6 +2,18 @@
 
 if (!$page) header(NOT_FOUND);
 
+# set current body related to page
+$body = 'main';
+
+# set timer to false, and enable it, as soon as the timer page
+# is entered
+$timer = false;
+
+# TODO: Feature | Timer | Different timer designs (K+K, Lidl, ...)
+if (preg_match('/^home/', $page)) $timer = 'lidl';
+if (preg_match('/^votes/', $page)) $body = 'votes';
+if (preg_match('/^users/', $page)) $body = 'users';
+
 ?>
 
 <!DOCTYPE HTML>
@@ -22,5 +34,5 @@ if (!$page) header(NOT_FOUND);
   <script src="<?php echo SCRIPT . "/users/functions.min.js"; ?>"></script>
 </head>
 
-<body>
+<body class='<?php echo "$body"; ?>' timer="<?php echo $timer ? $timer : 'false'; ?>">
   <audio id="audio_mlg_horn" src='<?php echo SOUND . '/mlg_horn.mp3'; ?>'></audio>

@@ -4,6 +4,7 @@
 @import "animations.scss";
 @import "elements.scss";
 @import "@countdown.scss";
+@import "@votes.scss";
 
 /* baloo-2-regular - latin */
 @font-face {
@@ -84,8 +85,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  &.timer {
-    &.lidl {
+  &[timer] {
+    &[timer="lidl"] {
       background-color: $yellow-100;
     }
   }

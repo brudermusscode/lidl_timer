@@ -1,0 +1,54 @@
+body {
+  &.votes {
+    votes-header {
+      display: block;
+      width: 100%;
+
+      .vh-inr {
+        width: $main-mid-width;
+        margin: 0 auto;
+        padding: 7em 0 2.4em;
+
+        label span::before {
+          display: block;
+          content: "Choose your time";
+        }
+
+        .actions {
+          p.already-voted {
+            opacity: 0;
+            visibility: hidden;
+            color: $light;
+            margin-right: $gap-std;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.48);
+
+            @extend .tran-all;
+          }
+        }
+      }
+
+      &[disabled] {
+        label span::before {
+          display: block;
+          content: "You voted for";
+        }
+
+        time-picker .arrow {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .actions {
+          p.already-voted {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          button-model {
+            @extend [disabled];
+          }
+        }
+      }
+    }
+  }
+}
