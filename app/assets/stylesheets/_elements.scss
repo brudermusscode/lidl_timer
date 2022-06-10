@@ -228,7 +228,8 @@ button-model {
     }
 
     &:active {
-      @extend .mshd-1;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+        rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
     }
   }
 
@@ -247,6 +248,11 @@ button-model {
     &[size="wide"] {
       padding: 0 2.2em;
       line-height: 3.4em;
+    }
+
+    &[size="std"] {
+      padding: 0 1.4em;
+      line-height: 2.4em;
     }
 
     &[size="smol"] {
@@ -361,18 +367,27 @@ time-picker {
       }
 
       .show {
-        &:first-of-type {
-          margin-right: $gap-smol;
-        }
+        background: $orange2;
+        padding: 0.6em 1em 0;
 
-        @extend .posrel, .lt;
+        @extend .mshd-1, .posrel, .lt;
+
+        span {
+          display: block;
+          position: absolute;
+          text-transform: uppercase;
+          font-size: 0.8em;
+          color: white;
+
+          @extend .tac, .align-mid-horiz;
+        }
 
         input {
           pointer-events: none;
           height: 100%;
           width: $time-size;
           line-height: $time-size;
-          background: $orange3;
+          background: transparent;
           outline: 0;
           border: 0;
           padding: 0;
@@ -380,22 +395,31 @@ time-picker {
           font-size: 2.8em;
           color: $dark;
 
-          @extend .rd24, .tac;
+          @extend .tac;
+        }
+
+        &:first-of-type {
+          border-radius: 24px 0 0 24px;
+          border-right: 1px solid $dark;
+        }
+
+        &:last-of-type {
+          border-radius: 0 24px 24px 0;
         }
       }
     }
 
     .arrow {
-      background: $orange5;
+      background: $light;
       height: $size;
       width: $size;
       line-height: $size;
       cursor: pointer;
 
-      @extend .rd18, .tran-all, .tac;
+      @extend .mshd-1, .rd18, .tran-all, .tac;
 
       &:hover {
-        background: $orange4;
+        background: $orange6;
       }
 
       &:active {

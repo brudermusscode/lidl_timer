@@ -13,41 +13,53 @@ include_once TEMPLATE . '/layout/header.php';
 
 ?>
 
-<main class="centered smol">
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
+<div style="background:url(/app/assets/images/5930878.jpg) center no-repeat;background-size:cover;width:100%;"
+  class="posrel">
+  <main class="centered smol">
     <form data-form="votes,time" method="POST">
+      <div style="padding:7em 0 2.4em;">
 
-      <time-picker>
-        <div class="tp-inr">
+        <time-picker class="mb42">
+          <div class="tp-inr">
 
-          <div data-action="time-picker,manipulate" class="arrow left">
-            <i class="ri-arrow-left-fill std"></i>
-          </div>
-
-          <div class="time">
-            <div class="show hour">
-              <input type="text" value="12" name="hour" />
+            <div data-action="time-picker,manipulate" class="arrow left">
+              <i class="ri-arrow-left-fill std"></i>
             </div>
-            <div class="show minute">
-              <input type="text" value="00" name="minute" />
+
+            <div class="time">
+              <div class="show hour">
+                <span>hour</span>
+                <input type="text" value="12" name="hour" />
+              </div>
+              <div class="show minute">
+                <span>minute</span>
+                <input type="text" value="00" name="minute" />
+              </div>
             </div>
-          </div>
 
-          <div data-action="time-picker,manipulate" class="arrow right">
-            <i class="ri-arrow-right-fill"></i>
-          </div>
+            <div data-action="time-picker,manipulate" class="arrow right">
+              <i class="ri-arrow-right-fill"></i>
+            </div>
 
+          </div>
+        </time-picker>
+
+
+        <div style="margin:0 auto;width:calc(100% - 2.4em);">
+          <button-model submit-closest size="std" color="light" dark rounded hover-shadowed shadowed class="rt"
+            style="padding-top:.2em;">
+            <i class="ri-send-plane-2-fill"></i>
+          </button-model>
+
+          <div class="cl"></div>
         </div>
-      </time-picker>
-
-      <div class="mt42 disfl fldirrow flCenter">
-        <button-model submit-closest size="wide" color="orange" dark rounded hover-shadowed shadowed>
-          <p>Vote</p>
-        </button-model>
       </div>
-
     </form>
-  </div>
+  </main>
+</div>
+
+<main class="centered smol">
+
 </main>
 
 <script>
