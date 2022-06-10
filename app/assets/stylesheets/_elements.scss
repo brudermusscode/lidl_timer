@@ -100,11 +100,17 @@ box-model {
 label {
   display: block;
   margin: 0;
-  padding: 0;
+  padding: 0.4em 2em;
   border: none;
   outline: none;
   font-size: 1.2em;
   line-height: 1.6em;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  .text {
+    @extend .mr12;
+  }
 
   &[big] {
     font-size: 2em;
@@ -112,7 +118,7 @@ label {
   }
 
   &[centered] {
-    @extend .tac;
+    @extend .disfl, .fldirrow, .flCenter;
   }
 
   &[dark] {
@@ -249,13 +255,13 @@ button-model {
   // ----------
   &[size] {
     &[size="wide"] {
-      padding: 0 2.2em;
+      padding: 0.2em 2.2em 0;
       line-height: 3.4em;
     }
 
     &[size="std"] {
-      padding: 0 1.4em;
-      line-height: 2.4em;
+      padding: 0.2em 1.4em 0;
+      line-height: 2.8em;
     }
 
     &[size="smol"] {
@@ -447,5 +453,41 @@ time-picker {
         }
       }
     }
+  }
+}
+
+user-icon {
+  display: block;
+  height: 3em;
+  width: 3em;
+  line-height: 3em;
+
+  &[color] {
+    &[color="orange"] {
+      background: $orange4;
+    }
+  }
+}
+
+outlined-text {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  line-height: 3em;
+  height: 3.26em;
+  width: auto;
+  color: $dark;
+  padding: 0 1.2em 0;
+  font-weight: 500;
+  gap: 0.6em;
+
+  @extend .disfl, .fldirrow, .flCenter;
+
+  i {
+    display: block;
+  }
+
+  span {
+    padding-top: 0.2em;
+    display: block;
+    font-weight: 600;
   }
 }

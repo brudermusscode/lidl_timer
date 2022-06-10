@@ -36,7 +36,12 @@ if($get_user_vote->stmt->rowCount() > 0) {
 }
 
 # get all votes
-$q = "SELECT * FROM votes WHERE date = CURRENT_DATE";
+$q =
+  "SELECT *
+  FROM votes
+  JOIN users ON users.id = votes.user_id
+  WHERE votes.date = CURRENT_DATE
+  ORDER BY votes.time DESC";
 $p = [];
 $get_votes = $M->select($q, $p, true);
 
@@ -99,23 +104,53 @@ include_once TEMPLATE . '/layout/header.php';
 
 <main class="centered smol" style="padding:2.4em 0;">
 
-  <div class="lt" style="width:calc(40% - .6em);">
+  <label std dark>
+    <div class="text lt">Cast votes</div>
+    <div class="icon lt">
+      <i class="ri-arrow-down-fill"></i>
+    </div>
+
+    <div class="cl"></div>
+  </label>
+
+  <div>
+
     <?php foreach ($get_votes->fetch as $v) { ?>
-      <box-model shadowed="std" light white rounded class="mb12">
+
+      <box-model shadowed="std" light white rounded="wide" class="mb12">
         <bm-inr std>
-          <div>
-            <p class="tac" style="color:#333;font-size:2.4em;">
-              <?php echo substr($v->time, 0, 5); ?>
-            </p>
+          <div class="posrel">
+
+            <user-icon rounded="mid" size="std" class="lt" color="orange">
+              <p class="tac"><?php echo substr($v->mail, 0, 2); ?></p>
+            </user-icon>
+
+            <div class="lt">
+              <p style="color:#333;font-size:2.4em;font-weight:400;">
+                <?php echo substr($v->time, 0, 5); ?>
+              </p>
+            </div>
+
+            <button-model class="rt" size="std" color="orange" dark rounded="mid"
+              <?php echo $voted ? 'disabled' : 'hover-shadowed submit-closest'; ?>>
+              <i class="ri-send-plane-2-fill"></i>
+            </button-model>
+
+            <?php if($v->count > 1) { ?>
+              <outlined-text class="rt mr24" rounded="mid">
+                  <i class="ri-user-smile-line"></i>
+                  <span><?php echo $v->count - 1; ?></span>
+              </outlined-text>
+            <?php } ?>
+
+            <div class="cl"></div>
           </div>
         </bm-inr>
       </box-model>
+
     <?php } ?>
-  </div>
 
-  <div class="rt" style="width:calc(60% - .6em);">
   </div>
-
 </main>
 
 <script>
