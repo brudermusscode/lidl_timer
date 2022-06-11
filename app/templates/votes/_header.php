@@ -9,7 +9,7 @@
       <?php if (!$voted && !$voting_open) { ?>
 
       <label big centered light text-shadowed class="mt12">
-        <p><strong>Voting's closed!</strong></p>
+        <p class="trimt tac"><strong>Voting's closed!</strong></p>
       </label>
 
       <time-picker data-time-picker="main" class="mb12">
@@ -28,7 +28,9 @@
       </time-picker>
 
       <label centered light text-shadowed class="mb68">
-        <p>Next voting <? echo $weekend ? 'Monday' : 'Tomorrow'; ?> at</p>
+        <p class="trimt tac">Next voting
+          <? echo $weekend ? 'Monday' : 'Tomorrow'; ?> at
+        </p>
       </label>
 
       <? } else { ?>

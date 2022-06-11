@@ -4,6 +4,10 @@ body {
       height: 28em;
 
       @extend header-model, .tran-all;
+
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
     }
 
     [data-structure="header,after,spacing"] {
@@ -12,6 +16,10 @@ body {
 
       @media screen and (max-width: calc(1110px + (2* 1.2em))) {
         height: 16em;
+      }
+
+      @media screen and (max-width: 600px) {
+        height: 5em;
       }
     }
 

@@ -32,11 +32,7 @@ include_once TEMPLATE . "/layout/header.php";
 
 ?>
 
-<?php
-
-  if(!$countdown_running) {
-
-?>
+<?php if(!$countdown_running) { ?>
 
 <s>
   <div class="headline-text">
@@ -68,10 +64,11 @@ include_once TEMPLATE . "/layout/header.php";
           if ($voted) echo 'Countdown starts at ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
         }
       } else {
-        echo 'Next voting tomorrow at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
+        echo 'Next voting ' . $voting_starts_text . ' at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
       }
 
     }
+
     ?>
   </div>
 </s>

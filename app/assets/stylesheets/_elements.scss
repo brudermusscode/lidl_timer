@@ -35,15 +35,31 @@ responder {
   @extend [rounded], [shadowed="mid"];
 
   r-inr {
-    display: inline-block;
+    display: block;
     padding: 1.8em 2.6em;
     color: $light;
 
     @extend .tac;
+
+    @media screen and (max-width: $main-smol-width) {
+      padding: 1.2em 1.8em;
+      text-align: center;
+    }
   }
 
   &.active {
     bottom: 1.2em;
+
+    @media screen and (max-width: $main-smol-width) {
+      bottom: 0;
+    }
+  }
+
+  @media screen and (max-width: $main-smol-width) {
+    width: 100%;
+    left: 0;
+    max-width: 100%;
+    border-radius: 0;
   }
 }
 

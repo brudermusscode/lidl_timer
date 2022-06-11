@@ -22,22 +22,24 @@
         </div>
 
         <div class="actions disfl fldirrow gap-std">
-          <button-model style="flex-basis:20%;" size="std" color="white" dark rounded="mid" hover-shadowed onclick="history.back();">
+          <button-model style="flex-basis:20%;" size="std" color="white" dark rounded="mid" hover-shadowed
+            onclick="history.back();">
             <p><i class="ri-arrow-left-fill"></i></p>
           </button-model>
-          <button-model style="flex-basis:80%;" submit-closest size="std" color="orange" dark rounded="mid" hover-shadowed>
+          <button-model style="flex-basis:80%;" submit-closest size="std" color="orange" dark rounded="mid"
+            hover-shadowed>
             <p>Login</p>
           </button-model>
         </div>
       </form>
 
-      <div class="mt34">
+      <div class="mt38 mb24">
         <p class="tac mt12">No account? Just enter your <strong>@deltacity.net</strong> address.</p>
       </div>
     </div>
 
     <div code style="opacity:0;transition:opacity .2s ease-out;height:0;overflow:hidden;">
-      <label big dark centered class="tac">
+      <label big dark centered class="tac" style="padding:.8em 0;">
         <span>Code sent!</span>
       </label>
 

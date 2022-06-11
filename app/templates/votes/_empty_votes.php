@@ -1,4 +1,4 @@
-<box-model data-react="votes,cast,empty" shadowed="std" light white rounded="wide" class="mb12 w40">
+<box-model data-react="votes,cast,empty" shadowed="std" light white rounded="wide" class="mb12">
   <bm-inr size="wide">
     <div style="color:rgba(0,0,0,.32);" class="disfl fldircol flCenter">
       <div>

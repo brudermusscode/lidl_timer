@@ -21,6 +21,8 @@ if (preg_match('/^users\/login/', $page)) $body = 'users-login';
 <html lang=en>
 
 <head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
   <title>Lidl-Timer</title>
   <link rel="shortcut icon" href="<?php echo $main->favicon; ?>" type="image/x-icon">
 

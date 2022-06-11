@@ -19,12 +19,6 @@
             <p><i class="ri-chat-poll-line menu"></i></p>
           </div>
         </a>
-
-        <a href="#">
-          <div class="menu-dot">
-            <p><i class="ri-user-smile-line menu"></i></p>
-          </div>
-        </a>
         <?php } else { ?>
         <a href="/u/login">
           <div class="menu-dot" <?php if ($page == "users/login") echo 'active="true"'; ?>>
