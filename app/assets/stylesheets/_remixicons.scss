@@ -30,6 +30,32 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &.wide {
+    font-size: 2em;
+  }
+
+  &.mid {
+    font-size: 1.4em;
+  }
+
+  &.std {
+    font-size: 1em;
+  }
+
+  &.smol {
+    font-size: 0.8em;
+  }
+
+  &[color] {
+    &[color="light"] {
+      color: $light;
+    }
+
+    &[color="transparent"] {
+      color: rgba(0, 0, 0, 0.24);
+    }
+  }
 }
 
 .ri-lg {

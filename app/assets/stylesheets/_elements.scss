@@ -82,17 +82,24 @@ box-model {
 
   bm-inr {
     display: block;
+    padding: 1.6em 2em;
 
-    &[smol] {
-      padding: 1em 1.4em;
-    }
+    &[size] {
+      &[size="smol"] {
+        padding: 1em 1.4em;
+      }
 
-    &[std] {
-      padding: 1.6em 2em;
-    }
+      &[size="std"] {
+        padding: 1.6em 2em;
+      }
 
-    &[wide] {
-      padding: 3em 3.4em;
+      &[size="mid"] {
+        padding: 2.2em 2.8em;
+      }
+
+      &[size="wide"] {
+        padding: 3em 3.4em;
+      }
     }
   }
 }
@@ -261,7 +268,7 @@ button-model {
 
     &[size="std"] {
       padding: 0.2em 1.4em 0;
-      line-height: 2.8em;
+      line-height: 2.6em;
     }
 
     &[size="smol"] {
@@ -348,7 +355,37 @@ button-model {
 
     &[color="orange"] {
       background-color: $orange;
-      color: $light;
+      color: $dark;
+    }
+
+    &[color="orange1"] {
+      background-color: $orange1;
+      color: $dark;
+    }
+
+    &[color="orange2"] {
+      background-color: $orange2;
+      color: $dark;
+    }
+
+    &[color="orange3"] {
+      background-color: $orange3;
+      color: $dark;
+    }
+
+    &[color="orange4"] {
+      background-color: $orange4;
+      color: $dark;
+    }
+
+    &[color="orange5"] {
+      background-color: $orange5;
+      color: $dark;
+    }
+
+    &[color="orange6"] {
+      background-color: $orange6;
+      color: $dark;
     }
   }
 
@@ -382,7 +419,7 @@ time-picker {
       }
 
       .show {
-        background: $orange2;
+        background: $orange4;
         padding: 0.6em 1em 0;
 
         @extend .mshd-1, .posrel, .lt;
@@ -392,7 +429,7 @@ time-picker {
           position: absolute;
           text-transform: uppercase;
           font-size: 0.8em;
-          color: rgba(255, 255, 255, 0.78);
+          color: rgba(0, 0, 0, 0.32);
 
           @extend .tac, .align-mid-horiz;
         }
@@ -461,18 +498,77 @@ user-icon {
   height: 3em;
   width: 3em;
   line-height: 3em;
+  text-transform: uppercase;
+  font-weight: 600;
 
   &[color] {
+    &[color^="purple"] {
+      background: $purple;
+      color: $light;
+
+      &[color$="1"] {
+        background: $purple1;
+        color: $light;
+      }
+
+      &[color$="2"] {
+        background: $purple2;
+        color: $light;
+      }
+
+      &[color$="3"] {
+        background: $purple3;
+        color: $light;
+      }
+
+      &[color$="4"] {
+        background: $purple4;
+        color: $dark;
+      }
+
+      &[color$="5"] {
+        background: $purple5;
+        color: $dark;
+      }
+
+      &[color$="6"] {
+        background: $purple6;
+        color: $dark;
+      }
+    }
+
     &[color="orange"] {
+      background: $orange;
+      color: $dark;
+    }
+
+    &[color="orange1"] {
+      background: $orange1;
+      color: $dark;
+    }
+
+    &[color="orange2"] {
+      background: $orange2;
+      color: $dark;
+    }
+
+    &[color="orange3"] {
+      background: $orange3;
+      color: $dark;
+    }
+
+    &[color="orange4"] {
       background: $orange4;
+      color: $dark;
     }
   }
 }
 
 outlined-text {
   border: 1px solid rgba(0, 0, 0, 0.12);
+  background: white;
   line-height: 3em;
-  height: 3.26em;
+  height: 3.06em;
   width: auto;
   color: $dark;
   padding: 0 1.2em 0;

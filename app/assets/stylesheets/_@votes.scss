@@ -2,12 +2,26 @@ body {
   &.votes {
     votes-header {
       display: block;
+      position: fixed;
       width: 100%;
+      max-width: $main-mid-width;
+      border-radius: 24px;
+      left: 50%;
+      top: 1.2em;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      @extend .tran-all-cubic;
+
+      &[scrolled="true"] {
+        transform: translateX(-50%) scale(0.98);
+        opacity: 0.2;
+      }
 
       .vh-inr {
-        width: $main-smol-width;
+        width: 100%;
         margin: 0 auto;
-        padding: 7em 0 2.4em;
+        padding: 7em 2.6em 8em;
 
         label span::before {
           display: block;
@@ -48,6 +62,19 @@ body {
             @extend [disabled];
           }
         }
+      }
+    }
+
+    [data-structure="votes,casted"] {
+      &[disable="true"] {
+        & > button-model {
+          // @extend [disabled];
+        }
+      }
+
+      box-model[casted="true"] {
+        transition: all 0.2s linear;
+        background: $green6;
       }
     }
   }

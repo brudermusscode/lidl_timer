@@ -10,10 +10,9 @@ $page = 'votes/index';
 $voted = false;
 $today_date = date('Y-m-d');
 
-# check if voted already
 # check if user voted already for today
 $q =
-  "SELECT uv.id, v.time time
+  "SELECT uv.id, v.id vote_id, v.time time
   FROM user_votes uv
   JOIN votes v ON v.id = uv.vote_id
   WHERE uv.user_id = ?
@@ -29,6 +28,7 @@ if($get_user_vote->stmt->rowCount() > 0) {
 
   # get vote time
   $vote_time = $get_user_vote->fetch->time;
+  $my_vote_id = $get_user_vote->fetch->vote_id;
 
   # substring vote time into hour and minute
   $hour = substr($vote_time, 0, 2);
@@ -37,11 +37,11 @@ if($get_user_vote->stmt->rowCount() > 0) {
 
 # get all votes
 $q =
-  "SELECT *
+  "SELECT *, votes.id vote_id, users.id user_id
   FROM votes
   JOIN users ON users.id = votes.user_id
   WHERE votes.date = CURRENT_DATE
-  ORDER BY votes.time DESC";
+  ORDER BY votes.id DESC";
 $p = [];
 $get_votes = $M->select($q, $p, true);
 
@@ -52,59 +52,11 @@ include_once TEMPLATE . '/layout/header.php';
 
 ?>
 
-<votes-header style="background: url(/app/assets/images/5930878.jpg) center no-repeat;background-size: cover;"
-  <?php echo $voted ? 'disabled' : ''; ?>>
-  <div class="vh-inr">
-    <form data-form="votes,time" method="POST">
+<?php include TEMPLATE . '/votes/_header.php'; ?>
 
-      <label big centered light text-shadowed class="mb24">
-        <span></span>
-      </label>
+<main class="centered smol posrel" style="padding:0 1.2em 4em;margin-top:-80px;z-index:2;">
 
-      <time-picker data-time-picker="main" class="mb62">
-        <div class="tp-inr">
-
-          <div data-action="time-picker,manipulate" class="arrow left">
-            <i class="ri-arrow-left-fill std"></i>
-          </div>
-
-          <div class="time">
-            <div class="show hour">
-              <span>hour</span>
-              <input type="text" value="<?php echo $voted ? $hour : '12'; ?>" name="hour" />
-            </div>
-            <div class="show minute">
-              <span>minute</span>
-              <input type="text" value="<?php echo $voted ? $minute : '00'; ?>" name="minute" />
-            </div>
-          </div>
-
-          <div data-action="time-picker,manipulate" class="arrow right">
-            <i class="ri-arrow-right-fill"></i>
-          </div>
-
-        </div>
-      </time-picker>
-
-      <div class="actions disfl fldirrow flEnd">
-        <p class="already-voted">
-          Come back tomorrow for voting
-        </p>
-
-        <button-model size="std" color="light" dark rounded shadowed
-          <?php echo $voted ? 'disabled' : 'hover-shadowed submit-closest'; ?>>
-          <i class="ri-send-plane-2-fill"></i>
-        </button-model>
-
-        <div class="cl"></div>
-      </div>
-    </form>
-  </div>
-</votes-header>
-
-<main class="centered smol" style="padding:2.4em 0;">
-
-  <label std dark>
+  <label std light text-shadowed class="mb12">
     <div class="text lt">Cast votes</div>
     <div class="icon lt">
       <i class="ri-arrow-down-fill"></i>
@@ -113,42 +65,13 @@ include_once TEMPLATE . '/layout/header.php';
     <div class="cl"></div>
   </label>
 
-  <div>
+  <div data-structure="votes,casted" <?php if ($voted) { echo 'disabled="true"'; } ?>>
 
-    <?php foreach ($get_votes->fetch as $v) { ?>
-
-      <box-model shadowed="std" light white rounded="wide" class="mb12">
-        <bm-inr std>
-          <div class="posrel">
-
-            <user-icon rounded="mid" size="std" class="lt" color="orange">
-              <p class="tac"><?php echo substr($v->mail, 0, 2); ?></p>
-            </user-icon>
-
-            <div class="lt">
-              <p style="color:#333;font-size:2.4em;font-weight:400;">
-                <?php echo substr($v->time, 0, 5); ?>
-              </p>
-            </div>
-
-            <button-model class="rt" size="std" color="orange" dark rounded="mid"
-              <?php echo $voted ? 'disabled' : 'hover-shadowed submit-closest'; ?>>
-              <i class="ri-send-plane-2-fill"></i>
-            </button-model>
-
-            <?php if($v->count > 1) { ?>
-              <outlined-text class="rt mr24" rounded="mid">
-                  <i class="ri-user-smile-line"></i>
-                  <span><?php echo $v->count - 1; ?></span>
-              </outlined-text>
-            <?php } ?>
-
-            <div class="cl"></div>
-          </div>
-        </bm-inr>
-      </box-model>
-
-    <?php } ?>
+    <?php foreach ($get_votes->fetch as $v) {
+      $post_entry = false;
+      $element_include = true;
+      include TEMPLATE . '/votes/_vote.php';
+    } ?>
 
   </div>
 </main>
@@ -156,41 +79,7 @@ include_once TEMPLATE . '/layout/header.php';
 <script>
 jQuery(function() {
 
-  let $t, formData, url;
-
   $(document)
-
-    .on('submit', '[data-form="votes,time"]', function() {
-
-      $t = $(this);
-      $voted_header = $t.closest('votes-header');
-      $submit_button = $voted_header.find('[submit-closest]');
-      formData = new FormData(this);
-      url = '/do/votes/add_time';
-
-      $.ajax({
-
-        data: formData,
-        url: url,
-        dataType: 'JSON',
-        method: $t.attr('method'),
-        contentType: false,
-        processData: false,
-        success: (data) => {
-
-          if (data.status) {
-            $voted_header.attr('disabled', 'true');
-            $submit_button.removeAttr('submit-closest');
-            $submit_button.removeAttr('hover-shadowed');
-          }
-
-          responder.add($('body'), data.message);
-        },
-        error: (data) => {
-          console.error(data);
-        }
-      });
-    })
 
     .on('click', '[data-action="time-picker,manipulate"]', function() {
 

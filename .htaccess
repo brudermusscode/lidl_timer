@@ -57,6 +57,7 @@ RewriteRule ^ /%1 [R=301,L]
 RewriteRule ^$ /app/templates/home/index.php [NC,L]
 
 # a
+RewriteRule ^get/(.*) /app/templates/$1 [NC,L]
 RewriteRule ^do/(.*) /app/functions/$1 [NC,L]
 
 # users

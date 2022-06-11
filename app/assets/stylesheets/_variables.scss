@@ -19,6 +19,24 @@ $red: #e40006;
 $yellow: #fff200;
 $yellow-100: #ffdd00;
 
+$purple: #521a72;
+$purple1: #69318a;
+$purple2: #834ca3;
+$purple3: #9763b6;
+$purple4: #ae7fc9;
+$purple5: #c89ae2;
+$purple6: #ddb0f7;
+$purple7: #e2c6f3;
+$purple8: #f3e8fa;
+
+$green: #7bb0a6;
+$green1: #8db8b0;
+$green2: #9ec5be;
+$green3: #b6d3ce;
+$green4: #cce0dd;
+$green5: #ddecea;
+$green6: #eef5f4;
+
 $orange: #fdc886;
 $orange1: #f8cd99;
 $orange2: #f5d3a9;
@@ -27,12 +45,9 @@ $orange4: #f8e7d2;
 $orange5: #f5ebe0;
 $orange6: #f5f2ea;
 
-// k+k
-$orange: #eb6a28;
-$blue-2: #003883;
-
 // transitions
 $trans-cubic: all 0.6s cubic-bezier(0.1, 0.82, 0.25, 1);
+$cubic: cubic-bezier(0.1, 0.82, 0.25, 1);
 
 // lists
 $md-icon-sizes: 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44,

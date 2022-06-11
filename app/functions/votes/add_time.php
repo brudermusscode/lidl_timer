@@ -46,11 +46,15 @@ if ($minute < 0 || $minute > 59) {
 if ($minute < 10) $minute = '0' . $minute;
 if ($hour < 10) $hour = '0' . $hour;
 
+# convert time values into string
+$hour = (string) $hour;
+$minute = (string) $minute;
+
 # set valid time string
 (string) $vote_time = $hour . ':' . $minute . ':00';
 
 # check if vote time exists
-$q = "SELECT id FROM votes WHERE date = ? AND time = ? LIMIT 1";
+$q = "SELECT id, count FROM votes WHERE date = ? AND time = ? LIMIT 1";
 $p = [$today_date, $vote_time];
 $get_vote = $M->select($q, $p, false);
 
@@ -58,6 +62,9 @@ if(!$get_vote->status) exit(json_encode($return));
 
 # start this motherfucking transactiokn bro why u forget
 $pdo->beginTransaction();
+
+# checker if time existed or was added
+$new_vote = false;
 
 # if time exists, increase vote count by 1, otherwise add new one
 if($get_vote->stmt->rowCount() > 0) {
@@ -72,7 +79,9 @@ if($get_vote->stmt->rowCount() > 0) {
     exit(json_encode($return));
   }
 
+  # save vote id for later output
   $vote_id = (int) $get_vote->fetch->id;
+  $vote_count = (int) $get_vote->fetch->count + 1;
 } else {
 
   # insert it
@@ -85,7 +94,12 @@ if($get_vote->stmt->rowCount() > 0) {
     exit(json_encode($return));
   }
 
+  # set new vote to true
+  $new_vote = true;
+
+  # save vote id for later output
   $vote_id = (int) $insert_vote->connection->lastInsertId();
+  $vote_count = (int) 1;
 }
 
 # insert new user_vote
@@ -101,6 +115,13 @@ if(!$insert_user_vote->status) {
 # prepare return object
 $return->status = true;
 $return->message = "Your vote has been saved!";
+$return->data = [
+  "new_vote" => $new_vote,
+  "hour" => $hour,
+  "minute" => $minute,
+  "vote_id" => $vote_id,
+  "vote_count" => $vote_count
+];
 
 # close database connection
 $pdo = NULL;

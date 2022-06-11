@@ -18,3 +18,19 @@
     opacity: 1;
   }
 }
+
+.animated {
+  &.fallIn {
+    animation: fallIn 1s $cubic forwards;
+  }
+}
+
+@keyframes fallIn {
+  from {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}

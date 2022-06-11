@@ -32,6 +32,7 @@ if (preg_match('/^users/', $page)) $body = 'users';
   <script src="<?php echo SCRIPT . "/classes/Responder.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/application.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/users/functions.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/votes/functions.min.js"; ?>"></script>
 </head>
 
 <body class='<?php echo "$body"; ?>' timer="<?php echo $timer ? $timer : 'false'; ?>">
