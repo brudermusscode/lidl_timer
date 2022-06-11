@@ -11,7 +11,12 @@ if(!is_numeric($_POST['hour']) || !is_numeric($_POST['minute'])) exit(json_encod
 # transform post values to integer
 $hour = (int) $_POST['hour'];
 $minute = (int) $_POST['minute'];
-$today_date = date('Y-m-d');
+
+# check if voting is open
+if(!$voting_open) {
+  $return->message = "Voting is closed. Come back tomorrow!";
+  exit(json_encode($return));
+}
 
 # check if user voted already for today
 $q =

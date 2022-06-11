@@ -61,15 +61,15 @@ if (!isset($element_include, $voted)) exit(NULL);
             <span><?php echo $v->count; ?></span>
           </outlined-text>
 
-          <?php if ($voted || $post_entry) { ?>
+          <?php if ($voted || !$voting_open || $post_entry) { ?>
 
-          <button-model class="lt" size="std" color="orange5" dark rounded="mid" disabled>
-            <?php if ($v->vote_id == $my_vote_id) { ?>
-            <i class="ri-check-line"></i>
-            <?php } else { ?>
-            <i class="ri-subtract-line"></i>
-            <?php } ?>
-          </button-model>
+            <button-model class="lt" size="std" color="orange5" dark rounded="mid" disabled>
+              <?php if ($v->vote_id == $my_vote_id) { ?>
+              <i class="ri-check-line"></i>
+              <?php } else { ?>
+              <i class="ri-subtract-line"></i>
+              <?php } ?>
+            </button-model>
 
           <?php } else { ?>
 

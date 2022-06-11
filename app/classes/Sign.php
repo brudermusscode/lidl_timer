@@ -3,7 +3,7 @@
 # essential methods for signing users in, out and up
 
 // initialize Sign class
-$Sign = new Sign($pdo, $_SESSION, $_COOKIE);
+$Sign = new Sign($pdo, $_SESSION, $_COOKIE, $main);
 
 // define Sign class
 class Sign extends Main

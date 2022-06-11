@@ -1,7 +1,7 @@
 <?php if (!isset($voted)) exit(NULL); ?>
 
 <votes-header data-react="scroll,header" style="background: url(/app/assets/images/6385641.jpg) center 30% no-repeat;background-size: cover;"
-  <?php echo $voted ? 'disabled' : ''; ?>>
+  <?php echo $voted || !$voting_open ? 'disabled' : ''; ?>>
   <div class="vh-inr">
     <form data-form="votes,time" method="POST">
 
@@ -40,7 +40,7 @@
         </p>
 
         <button-model size="std" color="light" dark rounded shadowed
-          <?php echo $voted ? 'disabled' : 'hover-shadowed submit-closest'; ?>>
+          <?php echo $voted || !$voting_open ? 'disabled' : 'hover-shadowed submit-closest'; ?>>
           <i class="ri-send-plane-2-fill"></i>
         </button-model>
 

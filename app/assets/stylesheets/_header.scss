@@ -8,8 +8,7 @@ main-header {
   background: rgb(245, 242, 234);
   background: linear-gradient(
     180deg,
-    rgba(245, 242, 234, 1) 80%,
-    rgba(249, 248, 243, 0.42198886390493695) 94%,
+    rgba(245, 242, 234, 1) 86%,
     rgba(255, 255, 255, 0) 100%
   );
 
@@ -68,6 +67,14 @@ main-header {
           background: transparent;
         }
       }
+    }
+  }
+}
+
+body {
+  &[timer="lidl"] {
+    main-header {
+      background: transparent;
     }
   }
 }

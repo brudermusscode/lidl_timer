@@ -6,9 +6,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 if (!LOGGED) header('location: /');
 
 # init page
+$my_vote_id = NULL;
 $page = 'votes/index';
 $voted = false;
-$today_date = date('Y-m-d');
 
 # check if user voted already for today
 $q =
@@ -55,7 +55,6 @@ include_once TEMPLATE . '/layout/header.php';
 <?php include TEMPLATE . '/votes/_header.php'; ?>
 
 <main>
-
   <label std light text-shadowed class="mb12">
     <div class="text lt">Cast votes</div>
     <div class="icon lt">
