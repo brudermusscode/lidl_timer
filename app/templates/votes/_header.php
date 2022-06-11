@@ -28,7 +28,7 @@
       </time-picker>
 
       <label centered light text-shadowed class="mb68">
-        <p>Next voting tomorrow at</p>
+        <p>Next voting <? echo $weekend ? 'Monday' : 'Tomorrow'; ?> at</p>
       </label>
 
       <? } else { ?>

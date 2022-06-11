@@ -1,10 +1,5 @@
 <?php
 
-# define function for checking voting open state
-function voting_open_(string $current_time, string $closing_time) {
-
-}
-
 # start new session
 session_start();
 
@@ -64,6 +59,9 @@ $vote_settings = $Vote->get_settings();
 $voting_open = $Vote->is_open();
 # TODO: remove for $main->today->date
 $today_date = $main->today->date;
+$weekend = false;
+
+if (in_array(date('l'), ['Saturday', 'Sunday'])) $weekend = true;
 
 if (LOGGED) {
   # reset session and get new settings

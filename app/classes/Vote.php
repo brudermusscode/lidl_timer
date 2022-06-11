@@ -24,8 +24,14 @@ class Vote extends Main
     $current_timestamp = (string) date('Y-m-d H:i:s');
     $closing_timestamp = (string) date('Y-m-d ' . $this->get_settings()->closes_at);
 
+    # if its weekend, keep voting closed
+    if (in_array(date('l'), ['Saturday', 'Sunday'])) return false;
+
+    # if current time is bigger than closing timestamp from database,
+    # keep votings closed
     if ($current_timestamp >= $closing_timestamp) return false;
 
+    # otherwise open votings
     return true;
   }
 }
