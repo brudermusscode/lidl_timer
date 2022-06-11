@@ -3,6 +3,9 @@
 # start new session
 session_start();
 
+# set default timezone
+date_default_timezone_set('Europe/Berlin');
+
 # auto load composer libs
 include $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 
