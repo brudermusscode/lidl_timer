@@ -5,24 +5,6 @@ jQuery(function () {
   // get vote header
   $votes_header = $(document).find("votes-header");
 
-  // show/hide vote header on certain scroll height
-  $(window).on("scroll", function () {
-    scroll_height = 80;
-
-    if (
-      $votes_header.attr("scrolled") == "true" &&
-      $(this).scrollTop() >= scroll_height
-    )
-      return false;
-
-    if ($(this).scrollTop() >= scroll_height) {
-      $votes_header.attr("scrolled", "true");
-      console.log("scrolling...");
-    } else {
-      $votes_header.attr("scrolled", "false");
-    }
-  });
-
   // functionality for voting
   $(document).on("submit", '[data-form="votes,time"]', function () {
     $t = $(this);

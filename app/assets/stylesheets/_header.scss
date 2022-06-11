@@ -2,11 +2,72 @@ main-header {
   display: block;
   top: 0;
   width: 100%;
+  height: $main-header-height;
+  position: fixed;
+  z-index: 100;
+  background: rgb(245, 242, 234);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 242, 234, 1) 80%,
+    rgba(249, 248, 243, 0.42198886390493695) 94%,
+    rgba(255, 255, 255, 0) 100%
+  );
 
   mh-inr {
     display: block;
     width: calc(100% - (2 * 1.2em));
     max-width: $main-smol-width;
     margin: 0 auto;
+    padding: 0.8em 0;
+
+    a {
+      text-decoration: none;
+    }
+
+    .menu-dot {
+      height: 3.2em;
+      width: 3.2em;
+      line-height: 3.2em;
+      cursor: pointer;
+      color: $dark;
+
+      @extend .rd18, .tran-all, .tac;
+
+      &[active="true"] {
+        background: rgba(255, 255, 255, 0.68);
+
+        @extend .mshd;
+      }
+
+      &:hover {
+        background: white;
+
+        @extend .mshd;
+      }
+    }
+
+    .timer-dot {
+      background: $red;
+      top: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0 0 18px 18px;
+
+      @extend .tran-all, .mshd-1;
+
+      &:hover {
+        background: $red1;
+        padding-top: 0.2em;
+      }
+
+      .menu-dot {
+        color: $light;
+
+        &:hover {
+          background: transparent;
+        }
+      }
+    }
   }
 }

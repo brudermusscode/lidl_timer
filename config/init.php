@@ -36,6 +36,7 @@ $main = (object) [
 ];
 
 # define things
+define("GITHUB", $systemInformation->github);
 define("IMAGE", $systemInformation->images);
 define("SCRIPT", $systemInformation->scripts);
 define("STYLE", $systemInformation->styles);

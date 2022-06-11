@@ -7,15 +7,17 @@ $main-mid-width: 1280px;
 $main-smol-width: 900px;
 $main-single-width: 480px;
 
+// header
+$main-header-height: 5em;
+
 // others
-$gap-smol: 0.4em;
+$gap-smol: 0.8em;
 $gap-std: 1.2em;
 
 // colors
 $dark: #191b1d;
 $light: white;
 $blue: #00529c;
-$red: #e40006;
 $yellow: #fff200;
 $yellow-100: #ffdd00;
 
@@ -28,6 +30,16 @@ $purple5: #c89ae2;
 $purple6: #ddb0f7;
 $purple7: #e2c6f3;
 $purple8: #f3e8fa;
+
+$red: #d33257;
+$red-t: rgba(211, 50, 87, 0.12);
+$red-t-1: rgba(211, 50, 87, 0.08);
+$red1: #eb5f80;
+$red2: #ee819a;
+$red3: #ee96ab;
+$red4: #f1adbd;
+$red5: #f5c0cd;
+$red6: #f8d9e0;
 
 $green: #7bb0a6;
 $green1: #8db8b0;

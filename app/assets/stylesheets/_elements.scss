@@ -50,7 +50,7 @@ responder {
 header-model {
   display: block;
   position: fixed;
-  top: 4.2em;
+  top: $main-header-height;
   width: calc(100% - (2 * 1.2em));
   max-width: $main-mid-width;
   left: 50%;
@@ -58,9 +58,16 @@ header-model {
   border-radius: 24px;
   z-index: 1;
 
+  @extend .tran-all-cubic;
+
+  &[scrolled="true"] {
+    transform: translateX(-50%) scale(0.98);
+    opacity: 0.2;
+    border-radius: 24px;
+  }
+
   @media screen and (max-width: calc(1110px + (2* 1.2em))) {
     border-radius: 0;
-    top: 0;
     max-width: 100%;
     width: 100%;
   }

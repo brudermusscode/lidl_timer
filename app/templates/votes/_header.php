@@ -1,6 +1,6 @@
 <?php if (!isset($voted)) exit(NULL); ?>
 
-<votes-header style="background: url(/app/assets/images/6385641.jpg) center 30% no-repeat;background-size: cover;"
+<votes-header data-react="scroll,header" style="background: url(/app/assets/images/6385641.jpg) center 30% no-repeat;background-size: cover;"
   <?php echo $voted ? 'disabled' : ''; ?>>
   <div class="vh-inr">
     <form data-form="votes,time" method="POST">

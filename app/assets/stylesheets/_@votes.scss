@@ -1,12 +1,7 @@
 body {
   &.votes {
     votes-header {
-      @extend header-model, .tran-all-cubic;
-
-      &[scrolled="true"] {
-        transform: translateX(-50%) scale(0.98);
-        opacity: 0.2;
-      }
+      @extend header-model;
 
       .vh-inr {
         width: 100%;
@@ -65,18 +60,14 @@ body {
     }
 
     [data-structure="header,spacer"] {
-      height: 32em;
-
-      @media screen and (max-width: 1148px) {
-        height: 28em;
-      }
+      height: $main-header-height + 28em;
 
       @media screen and (max-width: 1120px) {
-        height: 25em;
+        height: $main-header-height + 25em;
       }
 
       @media screen and (max-width: 600px) {
-        height: 25em;
+        height: $main-header-height + 25em;
       }
     }
 
@@ -90,16 +81,17 @@ body {
 
       @media screen and (max-width: 600px) {
         padding: 0;
-      }
 
-      label {
-        text-shadow: none;
-
-        @extend [dark];
+        label {
+          text-shadow: none;
+          color: $dark;
+        }
       }
     }
 
     [data-structure="votes,casted"] {
+      margin-bottom: 4em;
+
       &[disable="true"] {
         & > button-model {
           // @extend [disabled];
