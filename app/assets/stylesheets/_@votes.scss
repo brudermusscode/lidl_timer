@@ -57,6 +57,12 @@ body {
           }
         }
       }
+
+      &[closed] {
+        time-picker .show {
+          background: $orange6;
+        }
+      }
     }
 
     [data-structure="header,spacer"] {

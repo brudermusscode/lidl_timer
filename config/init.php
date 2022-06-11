@@ -21,45 +21,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/db/connect.php";
 (bool) $dev_env = false;
 if ($db->getEnvironment() == 'dev') $dev_env = true;
 
-# get system settings
-# TODO: outsource into class and just call a function
-$stmt = $pdo->prepare("SELECT * FROM main_settings, main_urls");
-$stmt->execute();
-$systemInformation = $stmt->fetch();
-
-# get main settings
-$main = (object) [
-  "name" => $systemInformation->name,
-  "favicon" => $systemInformation->favicon,
-  "is_main" => $systemInformation->is_main,
-  "show_errors" => $systemInformation->show_errors,
-  "today" => (object) [
-    "date" => date('Y-m-d'),
-    "time" => date('H:i:s'),
-    "timestamp" => date('Y-m-d H:i:s')
-  ]
-];
-
-# include required classes
-include_once ROOT . "/app/classes/Main.php";
-include_once ROOT . "/app/classes/Sign.php";
-include_once ROOT . "/app/classes/Vote.php";
-
-# define things
-define("GITHUB", $systemInformation->github);
-define("IMAGE", $systemInformation->images);
-define("SCRIPT", $systemInformation->scripts);
-define("STYLE", $systemInformation->styles);
-define("ICON", $systemInformation->icons);
-define("FONT", $systemInformation->fonts);
-define("SOUND", $systemInformation->sounds);
-
-# get vote settings
-$vote_settings = $Vote->get_settings();
-$voting_open = $Vote->is_open();
-# TODO: remove for $main->today->date
-$today_date = $main->today->date;
-
 # create dynamic return for xhr requests to manage
 # output responsively
 $return = (object) [
@@ -71,13 +32,38 @@ $return = (object) [
   ]
 ];
 
-// define
-define("LOGGED", $Sign->isAuthed());
-
 // user object
 $my = (object) [
   "uid" => 0
 ];
+
+# include required classes
+include_once ROOT . "/app/classes/Main.php";
+include_once ROOT . "/app/classes/Sign.php";
+include_once ROOT . "/app/classes/Vote.php";
+
+$main = $M->get_main_settings();
+$main->today = (object) [
+  "date" => date('Y-m-d'),
+  "time" => date('H:i:s'),
+  "timestamp" => date('Y-m-d H:i:s')
+];
+
+# define things
+define("GITHUB", $main->github);
+define("IMAGE", $main->images);
+define("SCRIPT", $main->scripts);
+define("STYLE", $main->styles);
+define("ICON", $main->icons);
+define("FONT", $main->fonts);
+define("SOUND", $main->sounds);
+define("LOGGED", $Sign->isAuthed());
+
+# get vote settings
+$vote_settings = $Vote->get_settings();
+$voting_open = $Vote->is_open();
+# TODO: remove for $main->today->date
+$today_date = $main->today->date;
 
 if (LOGGED) {
   # reset session and get new settings

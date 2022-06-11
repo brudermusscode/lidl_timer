@@ -12,18 +12,27 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/config/definitions.php";
 include ROOT . "/vendor/autoload.php";
 
 # init the Main class
-$M = new Main($pdo, $_SESSION, $_COOKIE, $main);
+$M = new Main($pdo, $_SESSION, $_COOKIE);
 
 # define the Main class
 class Main extends Db
 {
 
-  public function __construct(object $connection, array $session, array $cookies, object $main_obj)
+  public function __construct(object $connection, array $session, array $cookies)
   {
     $this->pdo = (object) $connection;
     $this->session = (object) $session;
     $this->cookies = (object) $cookies;
-    $this->main_obj = (object) $main_obj;
+  }
+
+  public function get_main_settings() {
+    $q = (string) "SELECT * FROM main_settings, main_urls";
+    $p = (array) [];
+    $get_main_settings = $this->select($q, $p, false);
+
+    if (!$get_main_settings->status) return NULL;
+
+    return (object) $get_main_settings->fetch;
   }
 
   public function insert(string $query, array $params, bool $commit = false)

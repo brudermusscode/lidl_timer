@@ -3,7 +3,7 @@
 # neccessary functions for the voting system
 
 // initialize Vote class
-$Vote = new Vote($pdo, $_SESSION, $_COOKIE, $main);
+$Vote = new Vote($pdo, $_SESSION, $_COOKIE);
 
 // define Vote class
 class Vote extends Main
@@ -21,8 +21,8 @@ class Vote extends Main
   }
 
   public function is_open() {
-    $current_timestamp = (string) date($this->main_obj->today->timestamp);
-    $closing_timestamp = (string) date($this->main_obj->today->date . ' ' . $this->get_settings()->closes_at);
+    $current_timestamp = (string) date('Y-m-d H:i:s');
+    $closing_timestamp = (string) date('Y-m-d ' . $this->get_settings()->closes_at);
 
     if ($current_timestamp >= $closing_timestamp) return false;
 
