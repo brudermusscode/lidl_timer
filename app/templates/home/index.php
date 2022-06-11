@@ -32,6 +32,52 @@ include_once TEMPLATE . "/layout/header.php";
 
 ?>
 
+<?php
+
+  if(!$countdown_running) {
+
+?>
+
+<s>
+  <div class="headline-text">
+    <logo>
+      <p>
+        L
+        <span class=the-i>i</span>
+        <span class=logo-spacer>DL</span>
+      </p>
+    </logo>
+  </div>
+
+  <div class="mover-1"></div>
+
+  <div class="countdown-desc">
+    <?php
+
+    if ($weekend) {
+
+      echo 'Voting opens on Monday at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
+
+    } else {
+
+      if ($voting_open) {
+        if (!LOGGED) {
+          echo 'Login to cast your vote - Votings are open till ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
+        } else {
+          if (!$voted) echo 'Cast your vote now - Votings are open till ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
+          if ($voted) echo 'Countdown starts at ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
+        }
+      } else {
+        echo 'Next voting tomorrow at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
+      }
+
+    }
+    ?>
+  </div>
+</s>
+
+<?php } else { ?>
+
 <s>
   <div class="headline-text">
     <logo>
@@ -54,26 +100,7 @@ include_once TEMPLATE . "/layout/header.php";
   </div>
 
   <div class="countdown-desc">
-    <?php
-
-    if ($weekend) echo 'Voting pool opens on Monday at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
-
-    if(!$weekend && $due_reached) echo 'Next voting tomorrow at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
-
-    if (
-      !$weekend
-      && !$voting_open
-      && isset($countdown_fetch)
-      && !$due_reached
-    ) echo 'Meeting at ' . substr($countdown_fetch->time, 0, 5) . " o'clock";
-
-    if (!LOGGED) {
-      if ($voting_open) echo 'Login to cast your vote - Votings are open!';
-    } else {
-      if ($voting_open && !$voted) echo 'Cast your vote now - Votings are open!';
-      if ($voting_open && $voted) echo 'Countdown starts at ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
-    }
-    ?>
+    <?php echo 'Meeting at ' . substr($countdown_fetch->time, 0, 5) . " o'clock"; ?>
   </div>
 </s>
 
@@ -93,8 +120,8 @@ let due = "<?php echo $due; ?>";
 let exact_due = new Date(due).getTime();
 
 let x = setInterval(() => {
-
   let now = new Date().getTime();
+
   let distance = exact_due - now;
   let days = Math.floor(distance / (1000 * 60 * 60 * 24));
   let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -131,5 +158,7 @@ let x = setInterval(() => {
   }
 }, 1000);
 </script>
+
+<?php } ?>
 
 <?php include_once TEMPLATE . "/layout/footer.php"; ?>

@@ -59,6 +59,10 @@ RewriteRule ^$ /app/templates/home/index.php [NC,L]
 # a
 RewriteRule ^get/(.*) /app/templates/$1 [NC,L]
 RewriteRule ^do/(.*) /app/functions/$1 [NC,L]
+RewriteRule ^job/(.*) /app/jobs/$1 [NC,L]
+
+# jobs
+RewriteRule ^jobs/(.*) /app/templates/jobs/$1 [NC,L]
 
 # users
 RewriteRule ^u/(.*) /app/templates/users/$1 [NC,L]

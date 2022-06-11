@@ -1,4 +1,17 @@
 body {
+  .headline-text,
+  s .headline-text {
+    top: 1em;
+
+    logo {
+      font-size: 12em;
+
+      @extend .tran-all-cubic;
+    }
+
+    @extend .posabs, .tran-all-cubic;
+  }
+
   s {
     @extend .posabs, .alignmiddle;
 
@@ -34,18 +47,6 @@ body {
       bottom: -9em;
       font-weight: 800;
       text-transform: uppercase;
-    }
-
-    .headline-text {
-      top: 1em;
-
-      logo {
-        font-size: 12em;
-
-        @extend .tran-all-cubic;
-      }
-
-      @extend .posabs, .tran-all-cubic;
     }
 
     .mover-1 {

@@ -29,7 +29,7 @@ $return = (object) [
 
 // user object
 $my = (object) [
-  "uid" => 0
+  "id" => 0
 ];
 
 # include required classes
@@ -52,24 +52,55 @@ define("STYLE", $main->styles);
 define("ICON", $main->icons);
 define("FONT", $main->fonts);
 define("SOUND", $main->sounds);
+define("JOB", $main->jobs);
 define("LOGGED", $Sign->isAuthed());
 
 # get vote settings
 $vote_settings = $Vote->get_settings();
 $voting_open = $Vote->is_open();
+$weekend = $Vote->is_weekend();
+$voting_starts_text = $Vote->voting_starts();
+
 # TODO: remove for $main->today->date
 $today_date = $main->today->date;
-$weekend = false;
+$due = false;
+$due_reached = false;
+$countdown_running = false;
 
-if(!$weekend && !$voting_open) {
+$current_timestamp = $main->today->timestamp;
+$closes_at_timestamp = date('Y-m-d ' . $vote_settings->closes_at);
+$opens_at_timestamp = date('Y-m-d ' . $vote_settings->opens_at);
+
+if(
+  !$weekend
+  && !$voting_open
+  && $current_timestamp >= $closes_at_timestamp
+) {
+
+  # fetch the vote time that won the voting
   $countdown_fetch = $Vote->get_countdown_time();
-  $due = date($countdown_fetch->date . ' ' . $countdown_fetch->time);
-  $due_reached = false;
 
-  if ($main->today->timestamp >= $due) $due_reached = true;
+  # some extra checking here. Check if the countdown fetch returns
+  # an object, otherwise there is no vote submitted today
+  if (is_object($countdown_fetch)) {
+
+    # set the due timestamp from fetched vote time
+    $due = date($countdown_fetch->date . ' ' . $countdown_fetch->time);
+
+    # countdown is running OMG!
+    $countdown_running = true;
+  }
+
+  # set due reached to true if due is reached
+  if ($due && $main->today->timestamp >= $due) {
+
+    # countdown is done, running must be false!
+    $countdown_running = false;
+
+    # the due is reached, so tell the variable true (do I need this still?)
+    $due_reached = true;
+  }
 }
-
-if (in_array(date('l'), ['Saturday', 'Sunday'])) $weekend = true;
 
 if (LOGGED) {
   # reset session and get new settings
@@ -77,4 +108,6 @@ if (LOGGED) {
 
   # objectifcy $_SESSION and put into $my for shoter use
   $my = (object) $_SESSION;
+
+  define('ADMIN', $my->admin);
 }

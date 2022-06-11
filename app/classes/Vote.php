@@ -23,13 +23,18 @@ class Vote extends Main
   public function is_open() {
     $current_timestamp = (string) date('Y-m-d H:i:s');
     $closing_timestamp = (string) date('Y-m-d ' . $this->get_settings()->closes_at);
+    $opening_timestamp = (string) date('Y-m-d ' . $this->get_settings()->opens_at);
 
     # if its weekend, keep voting closed
     if (in_array(date('l'), ['Saturday', 'Sunday'])) return false;
 
     # if current time is bigger than closing timestamp from database,
-    # keep votings closed
-    if ($current_timestamp >= $closing_timestamp) return false;
+    # keep votings closed as well as if its smaller than opening timestamp
+    if (
+      $this->is_weekend()
+      || $current_timestamp >= $closing_timestamp
+      || $current_timestamp < $opening_timestamp
+      ) return false;
 
     # otherwise open votings
     return true;
@@ -53,5 +58,19 @@ class Vote extends Main
     if(!$get_vote->status) return NULL;
 
     return $get_vote->fetch;
+  }
+
+  public function is_weekend() {
+    if (in_array(date('l'), ['Saturday', 'Sunday'])) return true;
+
+    return false;
+  }
+
+  public function voted() {
+    # put some logic
+  }
+
+  public function voting_starts() {
+    return $this->get_settings()->last_vote_date == date('Y-m-d') ? 'tomorrow' : 'today';
   }
 }
