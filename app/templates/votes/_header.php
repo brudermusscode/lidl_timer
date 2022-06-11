@@ -50,4 +50,4 @@
   </div>
 </votes-header>
 
-<div style="height:34em;"></div>
+<div data-structure="header,spacer"></div>

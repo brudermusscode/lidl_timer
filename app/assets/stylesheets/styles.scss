@@ -4,7 +4,9 @@
 @import "remixicons.scss";
 @import "animations.scss";
 @import "elements.scss";
+@import "header.scss";
 @import "@countdown.scss";
+@import "@login.scss";
 @import "@votes.scss";
 
 /* baloo-2-regular - latin */
@@ -119,9 +121,10 @@ main {
 
   &.single {
     max-width: $main-single-width;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // gap: $gap-std;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    max-width: 100% !important;
   }
 }

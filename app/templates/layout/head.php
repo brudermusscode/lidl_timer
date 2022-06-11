@@ -13,6 +13,7 @@ $timer = false;
 if (preg_match('/^home/', $page)) $timer = 'lidl';
 if (preg_match('/^votes/', $page)) $body = 'votes';
 if (preg_match('/^users/', $page)) $body = 'users';
+if (preg_match('/^users\/login/', $page)) $body = 'users-login';
 
 ?>
 

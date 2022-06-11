@@ -30,6 +30,9 @@ jQuery(function () {
     let $votes_casted_container = $(document).find(
       '[data-structure="votes,casted"]'
     );
+    let $votes_casted_empty_box = $votes_casted_container.find(
+      '[data-react="votes,cast,empty"]'
+    );
 
     // get time picker elements
     $hour = $votes_header.find('input[name="hour"]');
@@ -53,6 +56,9 @@ jQuery(function () {
         console.log(data);
 
         if (data.status) {
+          // remove empty container
+          $votes_casted_empty_box.remove();
+
           // find casted vote
           $vote_casted = $votes_casted_container.find(
             'box-model[data-vote-id="' + data.data.vote_id + '"]'

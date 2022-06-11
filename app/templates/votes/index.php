@@ -54,7 +54,7 @@ include_once TEMPLATE . '/layout/header.php';
 
 <?php include TEMPLATE . '/votes/_header.php'; ?>
 
-<main class="centered smol posrel" style="padding:0 1.2em 4em;margin-top:-80px;z-index:2;">
+<main>
 
   <label std light text-shadowed class="mb12">
     <div class="text lt">Cast votes</div>
@@ -67,11 +67,22 @@ include_once TEMPLATE . '/layout/header.php';
 
   <div data-structure="votes,casted" <?php if ($voted) { echo 'disabled="true"'; } ?>>
 
-    <?php foreach ($get_votes->fetch as $v) {
-      $post_entry = false;
-      $element_include = true;
-      include TEMPLATE . '/votes/_vote.php';
-    } ?>
+    <?php
+
+    if($get_votes->stmt->rowCount() < 1) {
+
+      include TEMPLATE . '/votes/_empty_votes.php';
+
+    } else {
+
+      foreach ($get_votes->fetch as $v) {
+        $post_entry = false;
+        $element_include = true;
+        include TEMPLATE . '/votes/_vote.php';
+      }
+    }
+
+    ?>
 
   </div>
 </main>

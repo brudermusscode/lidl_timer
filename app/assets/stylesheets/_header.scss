@@ -1,0 +1,12 @@
+main-header {
+  display: block;
+  top: 0;
+  width: 100%;
+
+  mh-inr {
+    display: block;
+    width: calc(100% - (2 * 1.2em));
+    max-width: $main-smol-width;
+    margin: 0 auto;
+  }
+}

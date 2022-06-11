@@ -1,17 +1,7 @@
 body {
   &.votes {
     votes-header {
-      display: block;
-      position: fixed;
-      width: 100%;
-      max-width: $main-mid-width;
-      border-radius: 24px;
-      left: 50%;
-      top: 1.2em;
-      transform: translateX(-50%);
-      z-index: 1;
-
-      @extend .tran-all-cubic;
+      @extend header-model, .tran-all-cubic;
 
       &[scrolled="true"] {
         transform: translateX(-50%) scale(0.98);
@@ -20,8 +10,9 @@ body {
 
       .vh-inr {
         width: 100%;
+        max-width: $main-smol-width;
         margin: 0 auto;
-        padding: 7em 2.6em 8em;
+        padding: 7em 1.2em 8em;
 
         label span::before {
           display: block;
@@ -38,6 +29,14 @@ body {
 
             @extend .tran-all;
           }
+        }
+
+        @media screen and (max-width: 1120px) {
+          padding: 4em 2.6em 8em;
+        }
+
+        @media screen and (max-width: 600px) {
+          padding: 2.4em 1.2em;
         }
       }
 
@@ -62,6 +61,41 @@ body {
             @extend [disabled];
           }
         }
+      }
+    }
+
+    [data-structure="header,spacer"] {
+      height: 32em;
+
+      @media screen and (max-width: 1148px) {
+        height: 28em;
+      }
+
+      @media screen and (max-width: 1120px) {
+        height: 25em;
+      }
+
+      @media screen and (max-width: 600px) {
+        height: 25em;
+      }
+    }
+
+    main {
+      @extend .centered, .smol;
+
+      position: relative;
+      z-index: 2;
+      padding: 0em 1.2em;
+      margin-bottom: 4em;
+
+      @media screen and (max-width: 600px) {
+        padding: 0;
+      }
+
+      label {
+        text-shadow: none;
+
+        @extend [dark];
       }
     }
 

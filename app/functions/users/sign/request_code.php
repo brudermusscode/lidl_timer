@@ -9,9 +9,11 @@ if(empty($_POST['mail']) || LOGGED) exit(json_encode($return));
 $mail = (string) $_POST['mail'];
 
 // check if mail is legit
-if(!$Sign->validateMail($mail)) {
-  $return->message = get_msg(1);
-  exit(json_encode($return));
+if (!$dev_env) {
+  if(!$Sign->validateMail($mail)) {
+    $return->message = get_msg(1);
+    exit(json_encode($return));
+  }
 }
 
 // check if account exists

@@ -1,8 +1,8 @@
-<box-model white rounded="wide" shadowed="mid" class="flb100">
-  <bm-inr wide>
+<box-model data-structure="users,login-container" white rounded="wide" shadowed class="flb100">
+  <bm-inr>
     <div login>
       <label big dark centered>
-        <span>Delta Login</span>
+        <span></span>
       </label>
 
       <div class="mb42">
@@ -21,21 +21,24 @@
           <p>Trouble? Write <strong>Justin</strong> on Mattermost</p>
         </div>
 
-        <div class="actions">
-          <button-model submit-closest size="wide" color="red" dark rounded hover-shadowed shadowed>
+        <div class="actions disfl fldirrow gap-std">
+          <button-model style="flex-basis:20%;" size="std" color="white" dark rounded="mid" hover-shadowed onclick="history.back();">
+            <p><i class="ri-arrow-left-fill"></i></p>
+          </button-model>
+          <button-model style="flex-basis:80%;" submit-closest size="std" color="orange" dark rounded="mid" hover-shadowed>
             <p>Login</p>
           </button-model>
         </div>
       </form>
 
-      <div class="mt24">
+      <div class="mt34">
         <p class="tac mt12">No account? Just enter your <strong>@deltacity.net</strong> address.</p>
       </div>
     </div>
 
     <div code style="opacity:0;transition:opacity .2s ease-out;height:0;overflow:hidden;">
-      <label big dark centered>
-        <span>😍 We've sent you a code!</span>
+      <label big dark centered class="tac">
+        <span>Code sent!</span>
       </label>
 
       <div class="mb42">
@@ -53,7 +56,7 @@
         </div>
 
         <div class="actions mt32">
-          <button-model submit-closest size="wide" color="red" dark rounded hover-shadowed shadowed>
+          <button-model submit-closest size="std" color="orange" dark rounded="mid" hover-shadowed>
             <p>Verify</p>
           </button-model>
         </div>

@@ -47,6 +47,25 @@ responder {
   }
 }
 
+header-model {
+  display: block;
+  position: fixed;
+  top: 4.2em;
+  width: calc(100% - (2 * 1.2em));
+  max-width: $main-mid-width;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 24px;
+  z-index: 1;
+
+  @media screen and (max-width: calc(1110px + (2* 1.2em))) {
+    border-radius: 0;
+    top: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
 box-model {
   display: block;
 
@@ -101,6 +120,11 @@ box-model {
         padding: 3em 3.4em;
       }
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    border-radius: 0 !important;
+    width: 100%;
   }
 }
 
@@ -186,6 +210,7 @@ button-model {
   outline: none;
   transition: all 0.1s linear;
   overflow: hidden;
+  font-weight: 500;
 
   @extend .tac;
 

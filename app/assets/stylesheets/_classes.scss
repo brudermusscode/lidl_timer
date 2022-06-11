@@ -167,16 +167,18 @@
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 .mshd-2 {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .mshd-3 {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 .mshd-4 {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 .mshd-5 {
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 /* SHADOWS > LEFT */
 .mshd-l-4 {
@@ -254,6 +256,11 @@
   max-width: 600px;
 }
 
+[w500c] {
+  width: 100%;
+  max-width: 500px;
+}
+
 // display properties
 .disib {
   display: inline-block;
@@ -305,6 +312,11 @@
 
 .flb100 {
   flex-basis: 100%;
+}
+
+// gaps
+.gap-std {
+  gap: $gap-std;
 }
 
 // positioning
