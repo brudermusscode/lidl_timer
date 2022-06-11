@@ -98,7 +98,12 @@ if(!$insert_user_vote->status) {
   exit(json_encode($return));
 }
 
+# prepare return object
 $return->status = true;
 $return->message = "Your vote has been saved!";
 
+# close database connection
+$pdo = NULL;
+
+# exit from script and return success
 exit(json_encode($return));

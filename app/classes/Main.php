@@ -1,13 +1,14 @@
 <?php
-# this file holds essentials methods for using to query the database
+# this file holds essential methods for querying the database
 # and interact with the application
 
-# Import PHPMailer classes into the global namespace
-# These must be at the top of your script, not inside a function
+# import PHPMailer classes into global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 
-# auto load composer libs
+# require predefined defintions
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config/definitions.php";
+
+# auto load composer libs
 include ROOT . "/vendor/autoload.php";
 
 # init the Main class
