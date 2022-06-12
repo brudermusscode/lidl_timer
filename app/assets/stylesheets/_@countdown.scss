@@ -42,13 +42,6 @@ body {
       }
     }
 
-    .countdown-desc {
-      position: absolute;
-      bottom: -9em;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
     .mover-1 {
       position: absolute;
       top: -5em;
@@ -101,6 +94,13 @@ body {
         border-radius: 24px;
       }
     }
+
+    info-card-model {
+      .icm-inr {
+        color: $light;
+        background: #c39b0e;
+      }
+    }
   }
 
   &[timer="k+k"] {
@@ -129,6 +129,16 @@ body {
         border-radius: 24px;
       }
     }
+  }
+}
+
+@keyframes cool {
+  0% {
+    bottom: -20em;
+  }
+
+  to {
+    bottom: 2em;
   }
 }
 

@@ -1,6 +1,15 @@
 @charset "UTF-8";
 @import "variables.scss";
 
+@mixin almidhoriz {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toback {
+  z-index: -1;
+}
+
 [rounded] {
   @extend .rd12;
 

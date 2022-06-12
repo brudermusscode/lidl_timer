@@ -35,7 +35,7 @@
 
       <? } else { ?>
 
-      <label big centered light text-shadowed class="mb24">
+      <label big centered light text-shadowed>
         <span></span>
       </label>
 

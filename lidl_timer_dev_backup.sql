@@ -16,6 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cron_jobs`
+--
+
+DROP TABLE IF EXISTS `cron_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cron_jobs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `script_name` text DEFAULT NULL,
+  `last_run` timestamp NULL DEFAULT NULL,
+  `next_run` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cron_jobs`
+--
+
+LOCK TABLES `cron_jobs` WRITE;
+/*!40000 ALTER TABLE `cron_jobs` DISABLE KEYS */;
+INSERT INTO `cron_jobs` VALUES
+(1,'update_last_vote_date.php','2022-06-14 06:11:28','2022-06-14 06:11:58','2022-06-12 10:46:07','2022-06-14 06:11:28');
+/*!40000 ALTER TABLE `cron_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `main_settings`
 --
 
@@ -53,13 +82,14 @@ DROP TABLE IF EXISTS `main_urls`;
 CREATE TABLE `main_urls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `main` text DEFAULT NULL,
-  `github` text NOT NULL,
+  `github` text DEFAULT NULL,
   `styles` text DEFAULT NULL,
   `scripts` text DEFAULT NULL,
   `icons` text DEFAULT NULL,
   `images` text DEFAULT NULL,
   `fonts` text DEFAULT NULL,
   `sounds` text DEFAULT NULL,
+  `jobs` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -71,7 +101,7 @@ CREATE TABLE `main_urls` (
 LOCK TABLES `main_urls` WRITE;
 /*!40000 ALTER TABLE `main_urls` DISABLE KEYS */;
 INSERT INTO `main_urls` VALUES
-(1,'http://localhost','https://www.github.com/brudermusscode/lidl_timer','http://localhost/app/assets/stylesheets/compiled','http://localhost/app/assets/scripts','http://localhost/app/assets/icons','http://localhost/app/assets/images','http://localhost/app/assets/fonts','http://localhost/app/assets/sounds');
+(1,'http://localhost','https://www.github.com/brudermusscode/lidl_timer','http://localhost/app/assets/stylesheets/compiled','http://localhost/app/assets/scripts','http://localhost/app/assets/icons','http://localhost/app/assets/images','http://localhost/app/assets/fonts','http://localhost/app/assets/sounds','http://localhost/app/jobs');
 /*!40000 ALTER TABLE `main_urls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +119,7 @@ CREATE TABLE `user_authentications` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +144,18 @@ INSERT INTO `user_authentications` VALUES
 (13,1,'8169','2022-06-11 12:54:58','2022-06-11 12:55:02'),
 (14,3,'6925','2022-06-11 13:02:35','2022-06-11 13:03:26'),
 (15,4,'7413','2022-06-11 13:38:50','2022-06-11 13:38:53'),
-(16,4,'5714','2022-06-11 14:48:34','2022-06-11 14:48:38');
+(16,4,'5714','2022-06-11 14:48:34','2022-06-11 14:48:38'),
+(17,3,'5832','2022-06-13 18:24:19','2022-06-13 18:24:22'),
+(18,3,'7854','2022-06-13 18:26:33','2022-06-13 18:26:36'),
+(19,1,'7896','2022-06-14 07:00:53','2022-06-14 07:00:56'),
+(20,3,'2304','2022-06-14 07:01:28','2022-06-14 07:01:31'),
+(21,3,'9317','2022-06-13 04:00:26','2022-06-13 04:00:30'),
+(22,3,'6803','2022-06-11 23:24:48','2022-06-11 23:34:42'),
+(23,3,'0637','2022-06-11 23:26:19','2022-06-11 23:34:42'),
+(24,3,'1385','2022-06-11 23:26:53','2022-06-11 23:34:42'),
+(25,1,'6934','2022-06-11 23:27:34',NULL),
+(26,1,'8167','2022-06-11 23:28:23',NULL),
+(27,3,'3685','2022-06-11 23:34:38','2022-06-11 23:34:42');
 /*!40000 ALTER TABLE `user_authentications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +175,7 @@ CREATE TABLE `user_sessions` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_sessions_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,9 +185,9 @@ CREATE TABLE `user_sessions` (
 LOCK TABLES `user_sessions` WRITE;
 /*!40000 ALTER TABLE `user_sessions` DISABLE KEYS */;
 INSERT INTO `user_sessions` VALUES
-(8,1,'1b0390507f982909b479ff3dbeeb919f4d67da9f5320c0d36dabbf036c06aa6685d4','2b4a68456179816d36cae67ef8204bddb41b80ac1aba35d4a8f9b168cc8412ef7722','2022-06-11 12:55:02','2022-06-11 12:55:02'),
-(9,3,'e43aafb2ae1b387eb59309830740f5db959072a8bb06b1ebe666ed8013bff8a39580','2b4b98d4aa52304ab4d1a43d834e67cb90dd4dbac80506a9cb50f7a60e554885ee82','2022-06-11 13:03:26','2022-06-11 13:03:26'),
-(11,4,'388a0bfd1030ce975ec12b9c72c1ef059a3c35682bac721936a9fb4c6f0bd12723b5','d59374cb11b4fc2f3d0396338cbc5ab39f6632b654b7df42fc681b24f0501fcf8a61','2022-06-11 14:48:38','2022-06-11 14:48:38');
+(11,4,'388a0bfd1030ce975ec12b9c72c1ef059a3c35682bac721936a9fb4c6f0bd12723b5','d59374cb11b4fc2f3d0396338cbc5ab39f6632b654b7df42fc681b24f0501fcf8a61','2022-06-11 14:48:38','2022-06-11 14:48:38'),
+(14,1,'37facb3b94307e45f14a1394d6faf87369b30df57f57f6b5a10a003aa155134045c2','c7a4bdcc9e31081c6b76cc90220f53efde41da319fb6590db923a005e7b4d2da3285','2022-06-14 07:00:56','2022-06-14 07:00:56'),
+(17,3,'449515bebd329e1778cb8cc3261c4ca18ad325a50c97d4419235fccdebea3d56fe01','7b8f5aff419b5de947267c89c0dfb15409ad8b43023c730c447d9409a480efafbbc4','2022-06-11 23:34:42','2022-06-11 23:34:42');
 /*!40000 ALTER TABLE `user_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +205,7 @@ CREATE TABLE `user_votes` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,9 +215,7 @@ CREATE TABLE `user_votes` (
 LOCK TABLES `user_votes` WRITE;
 /*!40000 ALTER TABLE `user_votes` DISABLE KEYS */;
 INSERT INTO `user_votes` VALUES
-(8,1,3,'2022-06-11 11:44:04',NULL),
-(9,3,3,'2022-06-11 13:04:08',NULL),
-(13,4,6,'2022-06-11 14:09:45',NULL);
+(2,3,1,'2022-06-13 09:07:01',NULL);
 /*!40000 ALTER TABLE `user_votes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,6 +228,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin` tinyint(1) NOT NULL DEFAULT 0,
   `image` text DEFAULT NULL,
   `username` text DEFAULT NULL,
   `mail` text NOT NULL,
@@ -207,11 +247,40 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,NULL,NULL,'js@deltacity.net',NULL,'2022-06-02 21:17:48','2022-06-02 20:48:39',NULL),
-(2,NULL,NULL,'ass@deltacity.net',NULL,'2022-06-02 21:17:48','2022-06-02 20:48:39',NULL),
-(3,NULL,NULL,'justinleonseidel@protonmail.com',NULL,'2022-06-11 13:03:26','2022-06-11 13:02:35','2022-06-11 13:03:26'),
-(4,NULL,NULL,'justinleonseidel@gmail.com',NULL,'2022-06-11 13:38:53','2022-06-11 13:38:50','2022-06-11 13:38:53');
+(1,1,NULL,NULL,'js@deltacity.net',NULL,'2022-06-02 21:17:48','2022-06-02 20:48:39',NULL),
+(2,0,NULL,NULL,'ass@deltacity.net',NULL,'2022-06-02 21:17:48','2022-06-02 20:48:39',NULL),
+(3,1,NULL,NULL,'justinleonseidel@protonmail.com',NULL,'2022-06-11 13:03:26','2022-06-11 13:02:35','2022-06-11 13:03:26'),
+(4,1,NULL,NULL,'justinleonseidel@gmail.com',NULL,'2022-06-11 13:38:53','2022-06-11 13:38:50','2022-06-11 13:38:53');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vote_settings`
+--
+
+DROP TABLE IF EXISTS `vote_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vote_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `opens_at` time DEFAULT NULL,
+  `closes_at` time DEFAULT NULL,
+  `last_vote_date` date DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vote_settings`
+--
+
+LOCK TABLES `vote_settings` WRITE;
+/*!40000 ALTER TABLE `vote_settings` DISABLE KEYS */;
+INSERT INTO `vote_settings` VALUES
+(1,'06:00:00','12:00:00','2022-06-14','2022-06-11 16:30:12',NULL);
+/*!40000 ALTER TABLE `vote_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -230,7 +299,7 @@ CREATE TABLE `votes` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,12 +309,7 @@ CREATE TABLE `votes` (
 LOCK TABLES `votes` WRITE;
 /*!40000 ALTER TABLE `votes` DISABLE KEYS */;
 INSERT INTO `votes` VALUES
-(1,1,'2022-06-10','12:00:00',4,'2022-06-11 11:12:30',NULL),
-(2,1,'2022-06-10','12:01:00',2,'2022-06-11 11:15:58',NULL),
-(3,1,'2022-06-11','12:00:00',3,'2022-06-11 11:29:48',NULL),
-(4,4,'2022-06-11','12:25:00',2,'2022-06-11 13:39:12',NULL),
-(5,4,'2022-06-11','13:28:00',1,'2022-06-11 14:09:31',NULL),
-(6,4,'2022-06-11','12:10:00',1,'2022-06-11 14:09:45',NULL);
+(1,3,'2022-06-13','12:10:00',2,'2022-06-13 09:55:21',NULL);
 /*!40000 ALTER TABLE `votes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -258,4 +322,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-11 15:18:30
+-- Dump completed on 2022-06-12 12:17:44

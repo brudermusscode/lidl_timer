@@ -46,16 +46,17 @@ include_once TEMPLATE . "/layout/header.php";
   </div>
 
   <div class="mover-1"></div>
+</s>
 
-  <div class="countdown-desc">
-    <?php
+<info-card-model>
+  <pulse color="orange"></pulse>
+  <div class="icm-inr">
+    <p>
+      <?php
 
     if ($weekend) {
-
       echo 'Voting opens on Monday at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
-
     } else {
-
       if ($voting_open) {
         if (!LOGGED) {
           echo 'Login to cast your vote - Votings are open till ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
@@ -64,14 +65,36 @@ include_once TEMPLATE . "/layout/header.php";
           if ($voted) echo 'Countdown starts at ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
         }
       } else {
-        echo 'Next voting ' . $voting_starts_text . ' at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
+        echo 'Next voting tomorrow at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
       }
-
     }
 
     ?>
+    </p>
   </div>
-</s>
+</info-card-model>
+
+<script>
+jQuery(function() {
+
+  let now, countdown_start;
+
+  setInterval(() => {
+
+    now = new Date().getTime();
+    // TODO: No mixerino js & php. Sucks
+    countdown_start = new Date("<?php echo $closes_at_timestamp; ?>").getTime();
+
+    if (now >= countdown_start) {
+      console.log('Starting countdown...');
+    }
+
+    console.log('not yet!');
+    return false;
+
+  }, 2000);
+});
+</script>
 
 <?php } else { ?>
 
@@ -95,13 +118,16 @@ include_once TEMPLATE . "/layout/header.php";
     <p><span class=blink>:</span></p>
     <div id="countdown_seconds" class="time-container"></div>
   </div>
-
-  <div class="countdown-desc">
-    <?php echo 'Meeting at ' . substr($countdown_fetch->time, 0, 5) . " o'clock"; ?>
-  </div>
 </s>
 
-<script>
+<info-card-model>
+  <pulse color="orange"></pulse>
+  <div class="icm-inr">
+    <p><?php echo 'Meeting at ' . substr($countdown_fetch->time, 0, 5) . " o'clock"; ?></p>
+  </div>
+</info-card-model>
+
+<script type="text/javascript">
 jQuery(function() {
   setTimeout(() => {
     $(document).find('s').addClass('active');
@@ -109,7 +135,7 @@ jQuery(function() {
 });
 </script>
 
-<script>
+<script type="text/javascript">
 let $output_hours = document.getElementById('countdown_hours');
 let $output_minutes = document.getElementById('countdown_minutes');
 let $output_seconds = document.getElementById('countdown_seconds');

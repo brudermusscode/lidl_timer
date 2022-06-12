@@ -34,3 +34,52 @@
     transform: scale(1);
   }
 }
+
+pulse {
+  position: absolute;
+  display: block;
+  animation: pulse 6s $cubic infinite;
+  z-index: -1;
+  height: 100%;
+  width: 1005;
+  top: 0;
+  left: 0;
+
+  &[light] {
+    background: rgba(255, 255, 255, 0.42);
+  }
+
+  &[dark] {
+    background: #333;
+  }
+
+  &[color] {
+    &[color^="orange"] {
+      background: #c39b0e;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+  }
+
+  30% {
+    height: calc(100% + 2.4em);
+    width: calc(100% + 2.4em);
+    top: -1.2em;
+    left: -1.2em;
+    opacity: 0;
+    border-radius: 28px;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

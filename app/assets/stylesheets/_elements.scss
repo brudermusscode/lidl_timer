@@ -635,3 +635,30 @@ outlined-text {
     font-weight: 600;
   }
 }
+
+info-card-model {
+  display: block;
+  position: fixed;
+  z-index: 101;
+  bottom: -10em;
+
+  @include almidhoriz;
+
+  transition: all 0.8s $cubic;
+
+  .icm-inr {
+    padding: 1em 1.8em;
+
+    @extend .tac, .rd18;
+
+    p {
+      font-size: 1em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  &[active] {
+    bottom: 2.4em;
+  }
+}
