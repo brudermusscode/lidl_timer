@@ -86,6 +86,34 @@ body {
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media screen and (max-width: 28em) {
+    overflow: hidden;
+  }
+
+  &::before {
+    visibility: hidden;
+    opacity: 0;
+
+    @media screen and (max-width: 28em) {
+      position: fixed;
+      z-index: 20000000000000000000;
+      visibility: visible;
+      opacity: 1;
+      height: 100vh;
+      width: 100vw;
+      background: $red;
+      color: white;
+      display: block;
+      font-size: 2em;
+      content: "Too smol fren";
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
 :root {

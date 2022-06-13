@@ -66,14 +66,14 @@ body {
     }
 
     [data-structure="header,spacer"] {
-      height: $main-header-height + 28em;
+      height: $main-header-height + 27em;
 
       @media screen and (max-width: 1120px) {
-        height: $main-header-height + 25em;
+        height: $main-header-height + 23.8em;
       }
 
       @media screen and (max-width: 600px) {
-        height: $main-header-height + 25.8em;
+        height: $main-header-height + 24em;
       }
     }
 
