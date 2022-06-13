@@ -8,35 +8,43 @@ logo {
 
   .logo-spacer {
     display: inline-block;
-    margin-left: 0.24em;
+    margin-left: 0.1em;
   }
 
   .the-i {
     display: inline-block;
     position: absolute;
     color: $red;
+
+    // first
     // transform: rotate(-45deg);
     // margin: 0.04em 0 0 -0.16em;
-    margin: 0em 0 0 0em;
-    font-size: 1em;
+
+    // second
+    // margin: 0.09em 0 0 -0.18em;
+    // font-size: 0.9em;
+
+    margin: 0.09em 0 0 -0.18em;
+    font-size: 0.9em;
+    transform: rotate(0);
 
     animation-name: falling-i;
-    animation-duration: 5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(1, 0.01, 1, 0.71);
-    animation-delay: 3s;
+    animation-delay: 6s;
   }
 }
 
 @keyframes falling-i {
   from {
-    margin: 0 0 0 0;
+    margin: 0.09em 0 0 -0.18em;
     transform: rotate(0deg);
   }
 
   to {
-    margin: 0.13em 0 0 -0.16em;
-    transform: rotate(-75deg);
+    margin: 0.09em 0 0 -0.12em;
+    transform: rotate(12deg);
   }
 }
 
@@ -511,7 +519,8 @@ time-picker {
   @extend .disbl;
 
   $size: 3em;
-  $time-size: 2em;
+  $time-size-height: 1.2em;
+  $time-size-width: 2em;
 
   .tp-inr {
     gap: $gap-std;
@@ -527,13 +536,12 @@ time-picker {
 
       .show {
         background: $orange4;
-        padding: 0.6em 1em 0;
+        padding: 1em 1em 1.2em;
 
         @extend .mshd-1, .posrel, .lt;
 
         span {
           display: block;
-          position: absolute;
           text-transform: uppercase;
           font-size: 0.8em;
           color: rgba(0, 0, 0, 0.32);
@@ -544,8 +552,9 @@ time-picker {
         input {
           pointer-events: none;
           height: 100%;
-          width: $time-size;
-          line-height: $time-size;
+          width: $time-size-width;
+          line-height: $time-size-height;
+          height: $time-size-height;
           background: transparent;
           outline: 0;
           border: 0;
