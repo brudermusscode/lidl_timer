@@ -37,3 +37,17 @@ jQuery(function () {
       }
     });
 });
+
+let show_info_card = (text) => {
+  let $info_card = $(document).find('info-card-model');
+
+  if ($info_card.attr('active', 'true')) {
+    $info_card.attr("active", "false");
+    setTimeout(() => {
+      $info_card.find('p').html(text);
+      $info_card.attr("active", "true");
+    }, 200);
+  } else {
+    $info_card.attr("active", "true");
+  }
+}

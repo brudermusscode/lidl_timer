@@ -84,11 +84,11 @@ if(
   # an object, otherwise there is no vote submitted today
   if (is_object($countdown_fetch)) {
 
-    # set the due timestamp from fetched vote time
-    $due = date($countdown_fetch->date . ' ' . $countdown_fetch->time);
-
     # countdown is running OMG!
     $countdown_running = true;
+
+    # set the due timestamp from fetched vote time
+    $due = date($countdown_fetch->date . ' ' . $countdown_fetch->time);
   }
 
   # set due reached to true if due is reached

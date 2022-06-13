@@ -63,6 +63,92 @@ responder {
   }
 }
 
+countdown {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.4s linear;
+
+  &[active="true"] {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+label {
+  display: block;
+  margin: 0;
+  padding: 0.4em 2em;
+  border: none;
+  outline: none;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  font-weight: 400;
+  text-transform: uppercase;
+
+  .text {
+    @extend .mr12;
+  }
+
+  &[big] {
+    font-size: 2em;
+    font-weight: 700;
+  }
+
+  &[centered] {
+    @extend .disfl, .fldirrow, .flCenter;
+  }
+
+  &[dark] {
+    color: $dark;
+  }
+
+  &[light] {
+    color: $light;
+  }
+
+  &[text-shadowed] {
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.38);
+  }
+
+  &[background] {
+    &[background="purple"] {
+      background: #4d2365;
+    }
+  }
+}
+
+input {
+  border: none;
+  outline: none;
+  color: $dark;
+
+  @extend .tran-all;
+
+  &[slight] {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 0 1.6em;
+    line-height: 3.2em;
+    font-weight: 400;
+
+    &:focus {
+      border: 1px solid $blue;
+      outline: 2px solid $blue;
+    }
+  }
+
+  &[light] {
+    color: $dark;
+    background: $light;
+  }
+
+  &[dark] {
+    color: $light;
+    background: $dark;
+  }
+}
+
 header-model {
   display: block;
   position: fixed;
@@ -148,79 +234,6 @@ box-model {
   @media screen and (max-width: 600px) {
     border-radius: 0 !important;
     width: 100%;
-  }
-}
-
-label {
-  display: block;
-  margin: 0;
-  padding: 0.4em 2em;
-  border: none;
-  outline: none;
-  font-size: 1.2em;
-  line-height: 1.6em;
-  font-weight: 400;
-  text-transform: uppercase;
-
-  .text {
-    @extend .mr12;
-  }
-
-  &[big] {
-    font-size: 2em;
-    font-weight: 700;
-  }
-
-  &[centered] {
-    @extend .disfl, .fldirrow, .flCenter;
-  }
-
-  &[dark] {
-    color: $dark;
-  }
-
-  &[light] {
-    color: $light;
-  }
-
-  &[text-shadowed] {
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.38);
-  }
-
-  &[background] {
-    &[background="purple"] {
-      background: #4d2365;
-    }
-  }
-}
-
-input {
-  border: none;
-  outline: none;
-  color: $dark;
-
-  @extend .tran-all;
-
-  &[slight] {
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    padding: 0 1.6em;
-    line-height: 3.2em;
-    font-weight: 400;
-
-    &:focus {
-      border: 1px solid $blue;
-      outline: 2px solid $blue;
-    }
-  }
-
-  &[light] {
-    color: $dark;
-    background: $light;
-  }
-
-  &[dark] {
-    color: $light;
-    background: $dark;
   }
 }
 
@@ -448,6 +461,33 @@ button-model {
   }
 }
 
+info-card-model {
+  display: block;
+  position: fixed;
+  z-index: 101;
+  bottom: -40em;
+
+  @include almidhoriz;
+
+  transition: bottom 1.6s $cubic;
+
+  .icm-inr {
+    padding: 1em 1.8em;
+
+    @extend .tac, .rd18;
+
+    p {
+      font-size: 1em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  &[active="true"] {
+    bottom: 3.4em;
+  }
+}
+
 time-picker {
   @extend .disbl;
 
@@ -633,32 +673,5 @@ outlined-text {
     padding-top: 0.2em;
     display: block;
     font-weight: 600;
-  }
-}
-
-info-card-model {
-  display: block;
-  position: fixed;
-  z-index: 101;
-  bottom: -10em;
-
-  @include almidhoriz;
-
-  transition: all 0.8s $cubic;
-
-  .icm-inr {
-    padding: 1em 1.8em;
-
-    @extend .tac, .rd18;
-
-    p {
-      font-size: 1em;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-  }
-
-  &[active] {
-    bottom: 2.4em;
   }
 }
