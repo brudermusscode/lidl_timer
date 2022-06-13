@@ -87,12 +87,6 @@ body {
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  &[timer] {
-    &[timer="lidl"] {
-      background-color: $yellow-100;
-    }
-  }
 }
 
 :root {

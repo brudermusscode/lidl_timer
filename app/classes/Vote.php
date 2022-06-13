@@ -34,4 +34,24 @@ class Vote extends Main
     # otherwise open votings
     return true;
   }
+
+  public function get_countdown_time() {
+    # get vote settings
+    $q =
+      "SELECT v.*
+      FROM votes v
+      WHERE v.date = CURRENT_DATE
+      AND v.count = (
+        SELECT max(v_sub.count)
+        FROM votes v_sub
+        WHERE v_sub.date = CURRENT_DATE
+      )
+      LIMIT 1";
+    $p = [];
+    $get_vote = $this->select($q, $p, false);
+
+    if(!$get_vote->status) return NULL;
+
+    return $get_vote->fetch;
+  }
 }

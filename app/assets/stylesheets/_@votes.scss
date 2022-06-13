@@ -98,12 +98,6 @@ body {
     [data-structure="votes,casted"] {
       margin-bottom: 4em;
 
-      &[disable="true"] {
-        & > button-model {
-          // @extend [disabled];
-        }
-      }
-
       box-model[casted="true"] {
         transition: all 0.2s linear;
         background: $green6;

@@ -37,4 +37,7 @@ if (preg_match('/^users\/login/', $page)) $body = 'users-login';
 </head>
 
 <body class='<?php echo "$body"; ?>' timer="<?php echo $timer ? $timer : 'false'; ?>">
+
+  <?php if (!$due_reached) { ?>
   <audio id="audio_mlg_horn" src='<?php echo SOUND . '/mlg_horn.mp3'; ?>'></audio>
+  <?php } ?>

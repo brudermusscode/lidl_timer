@@ -1,82 +1,131 @@
-s {
-  @extend .posabs, .alignmiddle;
+body {
+  s {
+    @extend .posabs, .alignmiddle;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 16em;
-  width: 54em;
-  background: transparent;
-  border: solid 12px transparent;
-  outline: solid 4px transparent;
-  box-shadow: 0;
-  transition: all 0.2s ease-out;
-
-  .time {
-    opacity: 0;
-    flex-basis: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    font-size: 8em;
-    font-weight: 700;
-    color: $light;
-    text-shadow: -2px 2px 0 rgba(0, 0, 0, 0.1);
-
-    .time-container {
-      flex-basis: 25%;
-
-      @extend .tac;
-    }
-  }
-
-  .countdown-desc {
-    position: absolute;
-    bottom: -10em;
-    color: rgba(0, 0, 0, 0.18);
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-
-  .lidl-text {
-    top: 1em;
-
-    logo {
-      font-size: 12em;
-
-      @extend .tran-all-cubic;
-    }
-
-    @extend .posabs, .tran-all-cubic;
-  }
-
-  .mover-1 {
-    position: absolute;
-    top: -5em;
-    left: calc(100% + 4em);
-    border-radius: 24px;
-    width: 1em;
-    height: 1em;
-    background: $light;
-
-    animation: mover-1 2s ease-out infinite;
-  }
-
-  &.active {
-    background: $yellow-100;
-    border: solid 1em $blue;
-    outline: solid 4px $light;
-    box-shadow: -2px 2px 0 2px rgba(0, 0, 0, 0.06);
+    align-items: center;
+    height: 16em;
+    width: 54em;
+    background: transparent;
+    border: solid 6px transparent;
+    outline: solid 4px transparent;
+    box-shadow: 0;
+    transition: all 0.2s ease-out;
 
     .time {
-      opacity: 1;
+      opacity: 0;
+      flex-basis: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size: 8em;
+      font-weight: 700;
+
+      .time-container {
+        flex-basis: 25%;
+
+        @extend .tac;
+      }
     }
 
-    .lidl-text {
-      top: -12em;
+    .countdown-desc {
+      position: absolute;
+      bottom: -9em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .headline-text {
+      top: 1em;
 
       logo {
-        font-size: 6em;
+        font-size: 12em;
+
+        @extend .tran-all-cubic;
+      }
+
+      @extend .posabs, .tran-all-cubic;
+    }
+
+    .mover-1 {
+      position: absolute;
+      top: -5em;
+      left: calc(100% + 4em);
+      border-radius: 24px;
+      width: 1em;
+      height: 1em;
+
+      animation: mover-1 2s ease-out infinite;
+    }
+
+    &.active {
+      .time {
+        opacity: 1;
+      }
+
+      .headline-text {
+        top: -12em;
+
+        logo {
+          font-size: 6em;
+        }
+      }
+    }
+  }
+
+  &[timer="lidl"] {
+    // body background
+    background: $yellow;
+
+    s {
+      .time {
+        color: $light;
+        text-shadow: -2px 2px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .countdown-desc {
+        color: rgba(0, 0, 0, 0.48);
+      }
+
+      .mover-1 {
+        background: white;
+      }
+
+      &.active {
+        background: $yellow1;
+        border: 6px solid $blue;
+        outline: 4px solid transparent;
+        box-shadow: 0 0 2px 10px rgba(0, 0, 0, 0.12);
+        border-radius: 24px;
+      }
+    }
+  }
+
+  &[timer="k+k"] {
+    // body background
+    background: $orange;
+
+    s {
+      .time {
+        color: $light;
+        text-shadow: -2px 2px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .countdown-desc {
+        color: rgba(0, 0, 0, 0.48);
+      }
+
+      .mover-1 {
+        background: white;
+      }
+
+      &.active {
+        background: $orange1;
+        border: 6px solid $blue;
+        outline: 4px solid transparent;
+        box-shadow: 0 0 2px 10px rgba(0, 0, 0, 0.12);
+        border-radius: 24px;
       }
     }
   }

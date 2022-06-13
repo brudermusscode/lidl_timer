@@ -6,9 +6,26 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 # set current page
 $page = 'home/index';
 
-$due_date = date('2022-06-03');
-$due_time = date('20:00:00');
-$due = $due_date . ' ' . $due_time;
+# set voted to false as default
+$voted = false;
+
+# check if user voted already for today
+$q =
+  "SELECT uv.id, v.id vote_id, v.time time
+  FROM user_votes uv
+  JOIN votes v ON v.id = uv.vote_id
+  WHERE uv.user_id = ?
+  AND v.date = ?
+  LIMIT 1";
+$p = [$my->id, $main->today->date];
+$get_user_vote = $M->select($q, $p, false);
+
+if(!$get_user_vote->status) header(NOT_FOUND);
+if($get_user_vote->stmt->rowCount() > 0) {
+
+  # set voted to true
+  $voted = true;
+}
 
 include_once TEMPLATE . "/layout/head.php";
 include_once TEMPLATE . "/layout/header.php";
@@ -16,7 +33,7 @@ include_once TEMPLATE . "/layout/header.php";
 ?>
 
 <s>
-  <div class="lidl-text">
+  <div class="headline-text">
     <logo>
       <p>
         L
@@ -25,7 +42,9 @@ include_once TEMPLATE . "/layout/header.php";
       </p>
     </logo>
   </div>
+
   <div class="mover-1"></div>
+
   <div id="countdown" class="time">
     <div id="countdown_hours" class="time-container"></div>
     <p><span class=blink>:</span></p>
@@ -35,7 +54,26 @@ include_once TEMPLATE . "/layout/header.php";
   </div>
 
   <div class="countdown-desc">
-    meeting at 08:00 PM
+    <?php
+
+    if ($weekend) echo 'Voting pool opens on Monday at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
+
+    if(!$weekend && $due_reached) echo 'Next voting tomorrow at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
+
+    if (
+      !$weekend
+      && !$voting_open
+      && isset($countdown_fetch)
+      && !$due_reached
+    ) echo 'Meeting at ' . substr($countdown_fetch->time, 0, 5) . " o'clock";
+
+    if (!LOGGED) {
+      if ($voting_open) echo 'Login to cast your vote - Votings are open!';
+    } else {
+      if ($voting_open && !$voted) echo 'Cast your vote now - Votings are open!';
+      if ($voting_open && $voted) echo 'Countdown starts at ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
+    }
+    ?>
   </div>
 </s>
 
@@ -46,6 +84,7 @@ jQuery(function() {
   }, 2000);
 });
 </script>
+
 <script>
 let $output_hours = document.getElementById('countdown_hours');
 let $output_minutes = document.getElementById('countdown_minutes');

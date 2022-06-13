@@ -61,6 +61,14 @@ $voting_open = $Vote->is_open();
 $today_date = $main->today->date;
 $weekend = false;
 
+if(!$weekend && !$voting_open) {
+  $countdown_fetch = $Vote->get_countdown_time();
+  $due = date($countdown_fetch->date . ' ' . $countdown_fetch->time);
+  $due_reached = false;
+
+  if ($main->today->timestamp >= $due) $due_reached = true;
+}
+
 if (in_array(date('l'), ['Saturday', 'Sunday'])) $weekend = true;
 
 if (LOGGED) {
