@@ -29,7 +29,7 @@
 
       <label centered light text-shadowed class="mb68">
         <p class="trimt tac">Next voting
-          <? echo $weekend ? 'Monday' : 'Tomorrow'; ?> at
+          <? echo $weekend ? 'Monday' : $voting_starts_text; ?> at
         </p>
       </label>
 

@@ -149,3 +149,289 @@ main {
     max-width: 100% !important;
   }
 }
+
+body {
+  &.not-found {
+    background: #ffd3cb;
+    overflow: hidden;
+
+    .container {
+      position: relative;
+      max-width: 1280px;
+      width: 100%;
+      height: 100vh;
+      margin: 0 auto;
+
+      .girl-down {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 50em;
+        width: 50em;
+
+        @media screen and (max-height: 860px) {
+          height: 48em;
+          width: 48em;
+        }
+
+        @media screen and (max-height: 820px) {
+          height: 44em;
+          width: 44em;
+        }
+
+        @media screen and (max-height: 760px) {
+          height: 40em;
+          width: 40em;
+        }
+
+        @media screen and (min-height: 1150px) {
+          height: 60em;
+          width: 60em;
+          left: -16em;
+        }
+
+        @media screen and (max-width: 960px) {
+          left: -10em;
+        }
+
+        @media screen and (max-width: 875px) {
+          left: -18em;
+        }
+
+        @media screen and (max-width: 720px) {
+          display: none;
+        }
+      }
+
+      .error-text {
+        position: absolute;
+        right: 6em;
+        top: 50%;
+        transform: translateY(-50%);
+
+        @media screen and (max-width: 720px) {
+          right: auto;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .headline {
+          font-size: 6em;
+          letter-spacing: -0.1em;
+          font-weight: 600;
+          color: #333;
+          line-height: 1;
+          text-align: right;
+
+          & > div {
+            display: inline-block;
+            position: relative;
+          }
+
+          .eyes {
+            .the {
+              animation: eyes-move 20s linear infinite;
+              height: 0.1em;
+              width: 0.1em;
+              top: 0.48em;
+              left: 0.18em;
+              border-radius: 50%;
+              position: absolute;
+              background: #333;
+            }
+          }
+
+          @media screen and (max-width: 720px) {
+            font-size: 4em;
+          }
+        }
+
+        p {
+          color: #333;
+          line-height: 1;
+          text-align: right;
+
+          @media screen and (max-width: 720px) {
+            text-align: center;
+          }
+
+          &.description {
+            font-size: 2.4em;
+
+            @media screen and (max-width: 720px) {
+              font-size: 1.2em;
+            }
+          }
+        }
+      }
+    }
+
+    .bubble-container {
+      position: absolute;
+      bottom: 0;
+      height: 100vh;
+      width: 100%;
+
+      .bubble {
+        z-index: -1;
+        position: absolute;
+        border-radius: 50%;
+        bottom: -12em;
+        opacity: 1;
+
+        animation-name: bubbleeee;
+        animation-iteration-count: infinite;
+
+        &.bubble-1 {
+          right: 10em;
+          height: 10em;
+          width: 10em;
+          background: rgba(255, 255, 255, 0.12);
+
+          animation-duration: 12s;
+          animation-delay: 0s;
+          animation-timing-function: linear;
+        }
+
+        &.bubble-2 {
+          right: 24em;
+          height: 3em;
+          width: 3em;
+          background: rgba(255, 255, 255, 0.24);
+
+          animation-duration: 6s;
+          animation-delay: 3s;
+          animation-timing-function: linear;
+        }
+
+        &.bubble-3 {
+          right: 4em;
+          height: 5em;
+          width: 5em;
+          background: rgba(255, 255, 255, 0.18);
+
+          animation-duration: 10s;
+          animation-delay: 4s;
+          animation-timing-function: linear;
+        }
+
+        &.bubble-4 {
+          right: 16em;
+          height: 2em;
+          width: 2em;
+          background: rgba(255, 255, 255, 0.32);
+
+          animation-duration: 4s;
+          animation-delay: 8s;
+          animation-timing-function: linear;
+        }
+
+        &.bubble-5 {
+          right: 16em;
+          height: 9em;
+          width: 9em;
+          background: rgba(255, 255, 255, 0.32);
+
+          animation-duration: 7s;
+          animation-delay: 10s;
+          animation-timing-function: linear;
+        }
+      }
+    }
+
+    main-header {
+      background: transparent;
+    }
+
+    sub-header {
+      height: 28em;
+
+      @extend header-model;
+    }
+
+    [data-structure="header,after,spacing"] {
+      position: relative;
+      height: 18em;
+
+      @media screen and (max-width: calc(1110px + (2* 1.2em))) {
+        height: 16em;
+      }
+
+      @media screen and (max-width: 600px) {
+        height: 5em;
+      }
+    }
+  }
+}
+
+@keyframes eyes-move {
+  // left -> right
+  0% {
+    left: 0.18em;
+    top: 0.48em;
+  }
+
+  9% {
+    left: 0.18em;
+    top: 0.48em;
+  }
+
+  10% {
+    left: 0.3em;
+    top: 0.48em;
+  }
+
+  29% {
+    left: 0.3em;
+    top: 0.48em;
+  }
+
+  30% {
+    left: 0.18em;
+    top: 0.48em;
+  }
+
+  // mid -> top
+  48% {
+    left: 0.18em;
+    top: 0.48em;
+  }
+
+  50% {
+    left: 0.18em;
+    top: 0.38em;
+  }
+
+  98% {
+    left: 0.18em;
+    top: 0.38em;
+  }
+
+  100% {
+    left: 0.18em;
+    top: 0.48em;
+  }
+}
+
+@keyframes bubbleeee {
+  0% {
+    bottom: -12em;
+    opacity: 1;
+  }
+
+  98% {
+    bottom: calc(100% + 12em);
+    opacity: 1;
+  }
+
+  99% {
+    bottom: calc(100% + 12em);
+    opacity: 0;
+  }
+
+  100% {
+    bottom: -12em;
+    opacity: 0;
+  }
+}

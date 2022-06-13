@@ -14,10 +14,29 @@ logo {
   .the-i {
     display: inline-block;
     position: absolute;
-    transform: rotate(-45deg);
     color: $red;
-    margin: 0.04em 0 0 -0.16em;
+    // transform: rotate(-45deg);
+    // margin: 0.04em 0 0 -0.16em;
+    margin: 0em 0 0 0em;
     font-size: 1em;
+
+    animation-name: falling-i;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(1, 0.01, 1, 0.71);
+    animation-delay: 3s;
+  }
+}
+
+@keyframes falling-i {
+  from {
+    margin: 0 0 0 0;
+    transform: rotate(0deg);
+  }
+
+  to {
+    margin: 0.13em 0 0 -0.16em;
+    transform: rotate(-75deg);
   }
 }
 

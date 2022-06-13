@@ -16,6 +16,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/db/connect.php";
 (bool) $dev_env = false;
 if ($db->getEnvironment() == 'dev') $dev_env = true;
 
+define('DEVENV', $dev_env);
+
 # create dynamic return for xhr requests to manage
 # output responsively
 $return = (object) [

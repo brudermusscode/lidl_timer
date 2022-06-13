@@ -60,7 +60,7 @@ if(!$countdown_running) { ?>
               if ($voted) echo 'Countdown starts at ' . substr($vote_settings->closes_at, 0, 5) . " o'clock!";
             }
           } else {
-            echo 'Next voting tomorrow at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
+            echo 'Next voting ' . $voting_starts_text . ' at ' . substr($vote_settings->opens_at, 0, 5) . " o'clock!";
           }
         }
 
@@ -76,8 +76,8 @@ if(!$countdown_running) { ?>
 
 <!-- PYRO MAN -->
 <div data-structure="countdown,pyro" class="pyro">
-    <div class="before"></div>
-    <div class="after"></div>
+  <div class="before"></div>
+  <div class="after"></div>
 </div>
 
 <!-- the countdown -->

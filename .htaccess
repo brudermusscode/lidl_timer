@@ -30,9 +30,9 @@ FileETag None
 Options All -Indexes
 
 # cu
-ErrorDocument 500 /404.php
-ErrorDocument 401 /404.php
-ErrorDocument 404 /404.php
+ErrorDocument 500 /app/templates/error/404.php
+ErrorDocument 401 /app/templates/error/404.php
+ErrorDocument 404 /app/templates/error/404.php
 
 # force https
 RewriteCond %{HTTP_HOST} !^localhost [NC]

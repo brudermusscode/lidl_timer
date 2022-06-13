@@ -14,6 +14,7 @@ if (preg_match('/^home/', $page)) $timer = 'lidl';
 if (preg_match('/^votes/', $page)) $body = 'votes';
 if (preg_match('/^users/', $page)) $body = 'users';
 if (preg_match('/^users\/login/', $page)) $body = 'users-login';
+if (preg_match('/^errors/', $page)) $body = 'not-found';
 
 ?>
 
@@ -39,9 +40,8 @@ if (preg_match('/^users\/login/', $page)) $body = 'users-login';
   <script src="<?php echo SCRIPT . "/countdown/functions.min.js"; ?>"></script>
 </head>
 
-<body class='<?php echo "$body"; ?>'
-      timer="<?php echo $timer ? $timer : 'false'; ?>"
-      countdown-running="<?php echo $countdown_running ? 'true' : 'false'; ?>">
+<body class='<?php echo "$body"; ?>' timer="<?php echo $timer ? $timer : 'false'; ?>"
+  countdown-running="<?php echo $countdown_running ? 'true' : 'false'; ?>">
 
   <?php if (!$due_reached) { ?>
   <audio id="audio_mlg_horn" src='<?php echo SOUND . '/mlg_horn.mp3'; ?>'></audio>
