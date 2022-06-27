@@ -1,9 +1,8 @@
 <?php
 
-# require database connection
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
+// ! fix please
 
-# start mysql transaction
+// START TRANSACTION
 $pdo->beginTransaction();
 
 # update last vote date
@@ -12,7 +11,7 @@ $p = (array) [];
 $update = $M->update($q, $p, true);
 
 # update cron job only in dev env
-if (DEV && 'a' == 'b') {
+if (DEV) {
   if (!$update->status) {
     $return->message = "Error: update_last_vote_date";
     exit(json_encode($return->message));
@@ -33,6 +32,7 @@ if (DEV && 'a' == 'b') {
   exit(json_encode($return));
 }
 
-if (!$update->status) exit("Cronjob Error: update_last_vote_date.php");
+$return = "Successfully updated last_vote_date!";
+if (!$update->status) $return = "Cronjob Error: update_last_vote_date.php";
 
-exit('Successfully updated last_vote_date!');
+exit($return);

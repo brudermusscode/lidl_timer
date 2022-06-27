@@ -55,12 +55,6 @@ class Db
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      // set default date and timezone for php
-      date_default_timezone_set('Europe/Berlin');
-
-      // define things ez pz lemono squeezio
-      define("SROOT", $_SERVER["DOCUMENT_ROOT"]);
-
       // return the database connection and the information
       // which were used to connect to the database, so we
       // later can access the right environment settings
