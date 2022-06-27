@@ -1,7 +1,7 @@
 // defines functionality related to user accounts
 jQuery(function () {
   let url, formData;
-  let body = $('body');
+  let body = $("body");
 
   $(document)
     // login >> request code
@@ -22,15 +22,14 @@ jQuery(function () {
         processData: false,
         // --
         success: (data) => {
-
           if (data.status) {
-            $login_container = $t.closest('[login]').addClass('disn');
-            $code_container = $login_container.next()
+            $login_container = $t.closest("[login]").addClass("disn");
+            $code_container = $login_container.next();
             $code_container.css({
-              'opacity': 1,
-              'display': 'block',
-              'height': 'auto',
-              'overflow': 'visible'
+              opacity: 1,
+              display: "block",
+              height: "auto",
+              overflow: "visible",
             });
             $code_container.find('input[name="mail"]').val(data.mail);
             $code_container.find('input[name="code"]').focus();
@@ -64,7 +63,7 @@ jQuery(function () {
         success: (data) => {
           if (data.status) {
             setTimeout(() => {
-              window.location.replace('/');
+              window.location.replace("/");
             }, 2000);
           }
 

@@ -3,7 +3,7 @@
 # require database connection
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
-if(DEVENV) header(NOT_FOUND);
+if(DEV) header(NOT_FOUND);
 
 # init page
 $page = 'jobs/index';

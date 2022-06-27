@@ -22,8 +22,8 @@ const load_countdown = (url, append) => {
     method: "POST",
     success: (data) => {
       $append.append(data);
-      $countdown_container = $(document).find('countdown');
-      $countdown_container.attr('active', 'true');
+      $countdown_container = $(document).find("countdown");
+      $countdown_container.attr("active", "true");
 
       setTimeout(() => {
         show_info_card();
@@ -35,7 +35,7 @@ const load_countdown = (url, append) => {
   });
 };
 
-const get_due_time = (url,) => {
+const get_due_time = (url) => {
   let due = {};
 
   $.ajax({

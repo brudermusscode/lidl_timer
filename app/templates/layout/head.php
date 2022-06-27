@@ -28,16 +28,16 @@ if (preg_match('/^errors/', $page)) $body = 'not-found';
   <link rel="shortcut icon" href="<?php echo $main->favicon; ?>" type="image/x-icon">
 
   <!-- styles -->
-  <link rel="stylesheet" href="<?php echo STYLE . '/styles.min.css'; ?>" />
+  <link rel="stylesheet" href="<?php echo STYLE . '/application.min.css'; ?>" />
 
   <!--- hacks --->
   <script src="<?php echo SCRIPT . "/jquery.min.js"; ?>"></script>
-  <script src="<?php echo SCRIPT . "/classes/Overlay.min.js"; ?>"></script>
-  <script src="<?php echo SCRIPT . "/classes/Responder.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/Overlay.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/Responder.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/application.min.js"; ?>"></script>
-  <script src="<?php echo SCRIPT . "/users/functions.min.js"; ?>"></script>
-  <script src="<?php echo SCRIPT . "/votes/functions.min.js"; ?>"></script>
-  <script src="<?php echo SCRIPT . "/countdown/functions.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/users.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/votes.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/countdown.min.js"; ?>"></script>
 </head>
 
 <body class='<?php echo "$body"; ?>' timer="<?php echo $timer ? $timer : 'false'; ?>"

@@ -13,7 +13,6 @@
 
       <div class="disfl fldirrow gap-smol">
         <?php if(LOGGED) { ?>
-
         <a href="/vote">
           <div class="menu-dot" <?php if ($page == "votes/index") echo 'active="true"'; ?>>
             <p><i class="ri-chat-poll-line menu"></i></p>

@@ -5,12 +5,6 @@
 # import PHPMailer classes into global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 
-# require predefined defintions
-include_once $_SERVER['DOCUMENT_ROOT'] . "/config/definitions.php";
-
-# auto load composer libs
-include ROOT . "/vendor/autoload.php";
-
 # init the Main class
 $M = new Main($pdo, $_SESSION, $_COOKIE);
 

@@ -1,22 +1,32 @@
 <?php
 
+// = hello man
+// START TRANSACTION GOD DAMN
+// * remove by time/merge
+// ! fix this, this is a bug!
+// ? wtf is this shit
+// # cool story
+
 # start new session
 session_start();
 
 # set default timezone
 date_default_timezone_set('Europe/Berlin');
 
+# require definitions
+// # should had been using __DIR__  more often before lmao
+include __DIR__ . "/definitions.php";
+
 # auto load composer libs
-include $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
+include ROOT . "/vendor/autoload.php";
 
 # require new database connection
-require_once $_SERVER['DOCUMENT_ROOT'] . "/config/db/connect.php";
+include ROOT . "/config/db/connect.php";
 
-# set dev_env to true, if current environment is development
+# set up constant for considering development environment
 (bool) $dev_env = false;
 if ($db->getEnvironment() == 'dev') $dev_env = true;
-
-define('DEVENV', $dev_env);
+define('DEV', $dev_env);
 
 # create dynamic return for xhr requests to manage
 # output responsively
@@ -29,15 +39,15 @@ $return = (object) [
   ]
 ];
 
-// user object
+# user object
 $my = (object) [
   "id" => 0
 ];
 
 # include required classes
-include_once ROOT . "/app/classes/Main.php";
-include_once ROOT . "/app/classes/Sign.php";
-include_once ROOT . "/app/classes/Vote.php";
+include ROOT . "/app/classes/Main.php";
+include ROOT . "/app/classes/Sign.php";
+include ROOT . "/app/classes/Vote.php";
 
 $main = $M->get_main_settings();
 $main->today = (object) [
@@ -55,6 +65,9 @@ define("ICON", $main->icons);
 define("FONT", $main->fonts);
 define("SOUND", $main->sounds);
 define("JOB", $main->jobs);
+define("CURRENT_DATE", $main->today->date);
+define("CURRENT_TIME", $main->today->time);
+define("CURRENT_TIMESTAMP", $main->today->timestamp);
 define("LOGGED", $Sign->isAuthed());
 
 # get vote settings
@@ -63,7 +76,7 @@ $voting_open = $Vote->is_open();
 $weekend = $Vote->is_weekend();
 $voting_starts_text = $Vote->voting_starts();
 
-# TODO: remove for $main->today->date
+// TODO: remove $today_date for $main->today->date
 $today_date = $main->today->date;
 $due = false;
 $due_reached = false;
@@ -108,7 +121,7 @@ if (LOGGED) {
   # reset session and get new settings
   $my = $Sign->resetSession();
 
-  # objectifcy $_SESSION and put into $my for shoter use
+  # objectify php session object and add to user object for shoter use
   $my = (object) $_SESSION;
 
   define('ADMIN', $my->admin);

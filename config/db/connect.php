@@ -1,8 +1,7 @@
 <?php
 
 # get database connection class
-include_once $_SERVER['DOCUMENT_ROOT'] . "/config/definitions.php";
-include_once ROOT . "/app/classes/Db.php";
+require_once ROOT . "/app/classes/Db.php";
 
 # create new dataabase connection
 $db = new Db;

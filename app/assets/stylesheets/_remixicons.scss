@@ -10,16 +10,15 @@
 */
 @font-face {
   font-family: "remixicon";
-  src: url("../../icons/remixicons/remixicon.eot?t=1590207869815"); /* IE9*/
-  src: url("../../icons/remixicons/remixicon.eot?t=1590207869815#iefix")
+  src: url("../icons/remixicons/remixicon.eot?t=1590207869815"); /* IE9*/
+  src: url("../icons/remixicons/remixicon.eot?t=1590207869815#iefix")
       format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../icons/remixicons/remixicon.woff2?t=1590207869815")
+    /* IE6-IE8 */ url("../icons/remixicons/remixicon.woff2?t=1590207869815")
       format("woff2"),
-    url("../../icons/remixicons/remixicon.woff?t=1590207869815") format("woff"),
-    url("../../icons/remixicons/remixicon.ttf?t=1590207869815")
-      format("truetype"),
+    url("../icons/remixicons/remixicon.woff?t=1590207869815") format("woff"),
+    url("../icons/remixicons/remixicon.ttf?t=1590207869815") format("truetype"),
     /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-      url("../../icons/remixicons/remixicon.svg?t=1590207869815#remixicon")
+      url("../icons/remixicons/remixicon.svg?t=1590207869815#remixicon")
       format("svg"); /* iOS 4.1- */
   font-display: swap;
 }

@@ -1,7 +1,7 @@
 <?php if (!isset($voted)) exit(NULL); ?>
 
 <votes-header data-react="scroll,header"
-  style="background: url(/app/assets/images/6385641.jpg) center 30% no-repeat;background-size: cover;"
+  style="background: url(<?php echo IMAGE . '/6385641.jpg'; ?>) center 30% no-repeat;background-size: cover;"
   <?php echo $voted || !$voting_open ? 'disabled' : ''; ?> <?php if (!$voting_open) echo "closed"; ?>>
   <div class="vh-inr">
     <form data-form="votes,time" method="POST">

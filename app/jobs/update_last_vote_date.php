@@ -12,7 +12,7 @@ $p = (array) [];
 $update = $M->update($q, $p, true);
 
 # update cron job only in dev env
-if (DEVENV && 'a' == 'b') {
+if (DEV && 'a' == 'b') {
   if (!$update->status) {
     $return->message = "Error: update_last_vote_date";
     exit(json_encode($return->message));
