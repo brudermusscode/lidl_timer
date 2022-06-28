@@ -1,5 +1,6 @@
-class Countdown {
+let loading_interval;
 
+class Countdown {
   init(url, append) {
     let $app = append;
     let $countdown_container;
@@ -7,7 +8,6 @@ class Countdown {
     let status;
 
     $.post(url, data, (data) => {
-
       // append countdown data to s-container
       append.append(data);
 
@@ -28,7 +28,7 @@ class Countdown {
         console.log("COUNTDOWN DUE REACHED:", due_reached);
 
         if (!due_reached) {
-          loading_inveral = setInterval(() => {
+          loading_interval = setInterval(() => {
             console.log("CHECKING COUNTDOWN RUNNING...");
 
             // init status by calling function
@@ -46,7 +46,7 @@ class Countdown {
               setTimeout(() => info_card_exists($app), 2000);
 
               // clear interval
-              clearInterval(loading_inveral);
+              clearInterval(loading_interval);
             } else {
               console.log("COUNTDOWN RUNNING:", status);
 
@@ -72,22 +72,21 @@ class Countdown {
     $.ajax({
       url: url,
       async: false,
-      dataType: 'JSON',
-      method: 'GET',
+      dataType: "JSON",
+      method: "GET",
       success: (data) => {
-
         // show countdown when it's running (respone with true status)
         if (data.status) {
           // show the countdown by appending attr active to s-container
           append.attr("active", true);
 
           // clear the interval for checking countdown startup
-          clearInterval(loading_inveral);
+          clearInterval(loading_interval);
         }
 
         status = data.status;
       },
-      error: (data) => console.error(data)
+      error: (data) => console.error(data),
     });
 
     return status;
@@ -99,15 +98,15 @@ class Countdown {
 
     $.ajax({
       url: url,
-      method: 'POST',
+      method: "POST",
       async: false,
       success: (data) => {
         if (data) status = true;
-      }
+      },
     });
 
     return status;
-  }
+  };
 
   get_due_time = () => {
     let url = "/do/countdown/get_timestamps";
@@ -133,7 +132,7 @@ class Countdown {
   };
 
   start_countdown = () => {
-    let $app = $(document).find('app');
+    let $app = $(document).find("app");
     let $pyro = $(document).find(".pyro");
     let $output_hours = document.getElementById("countdown_hours");
     let $output_minutes = document.getElementById("countdown_minutes");
@@ -162,7 +161,7 @@ class Countdown {
 
       if (distance < 1) {
         // explosions
-        $pyro.attr('active', true);
+        $pyro.attr("active", true);
 
         // manipulate info card
         info_card_exists($app, "Countdown is done! Let's go to LIDL!");
@@ -189,7 +188,6 @@ class Countdown {
       $(document).find("s").addClass("active");
     }, 1000);
   };
-
 }
 
 // init new responder for public use

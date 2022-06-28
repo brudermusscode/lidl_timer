@@ -41,8 +41,8 @@ if (preg_match('/^errors/', $page)) $body = 'not-found';
   <script src="<?php echo SCRIPT . "/countdown.min.js"; ?>"></script>
 </head>
 
-<body class='<?php echo "$body"; ?>' timer="<?php echo $timer ? $timer : 'false'; ?>"
-  countdown-running="<?php echo $countdown->running ? 'true' : 'false'; ?>">
+<body class='<?php echo "$body"; ?>' <?php if ($timer) echo "timer=$timer"; ?>
+  <?php if ($countdown->running) echo "countdown-running"; ?>>
 
   <app>
 
