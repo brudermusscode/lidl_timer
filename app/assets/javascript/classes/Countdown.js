@@ -23,8 +23,8 @@ class Countdown {
         // set interval for checking on countdown startup
         let info_card_status = false;
 
-        let due_reached = this.check_countdown_due_reached();
-
+        // check if the due is reached already
+        let due_reached = this.is_due_reached();
         console.log("COUNTDOWN DUE REACHED:", due_reached);
 
         if (!due_reached) {
@@ -32,7 +32,7 @@ class Countdown {
             console.log("CHECKING COUNTDOWN RUNNING...");
 
             // init status by calling function
-            status = this.check_countdown_running(url, $countdown_container);
+            status = this.is_running(url, $countdown_container);
 
             // clear interval and start countdown if countdown
             // startup is ON
@@ -40,7 +40,7 @@ class Countdown {
               console.log("COUNTDOWN RUNNING:", status);
 
               // start the countdown
-              this.start_countdown();
+              this.start();
 
               // show info card after 2 seconds
               setTimeout(() => info_card_exists($app), 2000);
@@ -66,7 +66,7 @@ class Countdown {
     });
   }
 
-  check_countdown_running = (url, append) => {
+  is_running = (url, append) => {
     let status = false;
 
     $.ajax({
@@ -92,7 +92,7 @@ class Countdown {
     return status;
   };
 
-  check_countdown_due_reached = () => {
+  is_due_reached = () => {
     let url = "/do/countdown/check_due_reached";
     let status = false;
 
@@ -131,7 +131,7 @@ class Countdown {
     return due;
   };
 
-  start_countdown = () => {
+  start = () => {
     let $app = $(document).find("app");
     let $pyro = $(document).find(".pyro");
     let $output_hours = document.getElementById("countdown_hours");

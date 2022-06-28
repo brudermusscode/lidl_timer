@@ -122,30 +122,37 @@ body {
 main {
   display: block;
   width: $main-full-width;
+  padding-bottom: 7.2em;
 
-  &.centered {
+  &[centered] {
     margin: 0 auto;
   }
 
-  &.wide {
-    max-width: $main-wide-width;
+  &[no-header] {
+    margin-top: $main-header-height;
   }
 
-  &.mid {
-    max-width: $main-mid-width;
-  }
+  &[size] {
+    &[size="wide"] {
+      max-width: $main-wide-width;
+    }
 
-  &.smol {
-    max-width: $main-smol-width;
-  }
+    &[size="mid"] {
+      max-width: $main-mid-width;
+    }
 
-  &.single {
-    max-width: $main-single-width;
-  }
+    &[size="smol"] {
+      max-width: $main-smol-width;
+    }
 
-  @media screen and (max-width: 600px) {
-    width: 100%;
-    max-width: 100% !important;
+    &[size="single"] {
+      max-width: $main-single-width;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      max-width: 100% !important;
+    }
   }
 }
 

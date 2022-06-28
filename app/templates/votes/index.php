@@ -54,7 +54,7 @@ include_once TEMPLATE . '/layout/header.php';
 
 <?php include TEMPLATE . '/votes/_header.php'; ?>
 
-<main>
+<main size="smol" centered>
   <label std light text-shadowed class="mb12">
     <div class="text lt">Cast votes</div>
     <div class="icon lt">

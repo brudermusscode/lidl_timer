@@ -10,7 +10,7 @@ jQuery(function () {
 
   // init countdown, if page is countdown
   if ($body.attr("timer")) {
-    url = "/get/home/countdown/_countdown";
+    url = "/get/home/main";
     countdown.init(url, $app);
   }
 

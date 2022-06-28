@@ -78,7 +78,7 @@ body {
     }
 
     main {
-      @extend .centered, .smol;
+      @extend [centered], [size="smol"];
 
       position: relative;
       z-index: 2;
@@ -101,6 +101,84 @@ body {
       box-model[casted="true"] {
         transition: all 0.2s linear;
         background: $green6;
+      }
+    }
+  }
+}
+
+.shops {
+  margin-top: 2.4em;
+
+  .shop__box {
+    position: relative;
+    margin-bottom: 1.2em;
+
+    .checker {
+      position: absolute;
+      right: 3.2em;
+      top: 50%;
+      transform: translateZ(-50%);
+      opacity: 0;
+      visibility: hidden;
+
+      i {
+        font-size: 3em;
+        color: $green;
+      }
+    }
+
+    cursor: pointer;
+
+    @extend .tran-all;
+
+    &:hover {
+      transform: scale(1.01);
+
+      @extend .mshd-2;
+    }
+
+    .shop__box_inr {
+      @extend .disfl, .fldirrow, .gap-std;
+
+      .shop__box_logo {
+        height: 8em;
+        width: 8em;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.58);
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .shop__box_info {
+        padding: 2.4em 2.4em 1.2em 1.2em;
+
+        @extend .disfl, .fldircol, .gap-smol;
+
+        .shop__box_info__title {
+          font-size: 2.8em;
+          font-weight: 700;
+          color: $dark;
+        }
+
+        .shop__box_info__slogan {
+          font-size: 1.4em;
+          font-weight: 500;
+          color: rgba(0, 0, 0, 0.48);
+        }
+      }
+    }
+
+    &[casted="true"] {
+      background: #eef5f4;
+
+      .checker {
+        opacity: 1;
+        visibility: visible;
       }
     }
   }

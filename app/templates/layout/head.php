@@ -10,7 +10,6 @@ $body = 'main';
 $timer = false;
 
 # TODO: Feature | Timer | Different timer designs (K+K, Lidl, ...)
-if (preg_match('/^home/', $page)) $timer = 'lidl';
 if (preg_match('/^votes/', $page)) $body = 'votes';
 if (preg_match('/^users/', $page)) $body = 'users';
 if (preg_match('/^users\/login/', $page)) $body = 'users-login';
@@ -38,10 +37,9 @@ if (preg_match('/^errors/', $page)) $body = 'not-found';
   <script src="<?php echo SCRIPT . "/application.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/users.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/votes.min.js"; ?>"></script>
-  <script src="<?php echo SCRIPT . "/countdown.min.js"; ?>"></script>
 </head>
 
-<body class='<?php echo "$body"; ?>' <?php if ($timer) echo "timer=$timer"; ?>
+<body class='<?php echo "$body"; ?>' <?php if ($body === 'main') echo 'timer="false"'; ?>>
   <?php if ($countdown->running) echo "countdown-running"; ?>>
 
   <app>

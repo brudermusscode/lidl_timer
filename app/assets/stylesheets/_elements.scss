@@ -105,17 +105,36 @@ countdown {
 
 label {
   display: block;
-  margin: 0;
-  padding: 0.4em 2em;
+  padding: 1.2em 2em;
   border: none;
   outline: none;
   font-size: 1.2em;
-  line-height: 1.6em;
+  line-height: 1em;
   font-weight: 400;
   text-transform: uppercase;
 
   .text {
     @extend .mr12;
+  }
+
+  .icon {
+    i {
+      display: block;
+
+      margin-top: -0.02em;
+    }
+  }
+
+  [flexer] {
+    @extend .disfl, .fldirrow, .gap-smol;
+  }
+
+  &[centered] {
+    @extend .tac;
+
+    [flexer] {
+      justify-content: center;
+    }
   }
 
   &[big] {
@@ -127,14 +146,6 @@ label {
     @extend .disfl, .fldirrow, .flCenter;
   }
 
-  &[dark] {
-    color: $dark;
-  }
-
-  &[light] {
-    color: $light;
-  }
-
   &[text-shadowed] {
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.38);
   }
@@ -143,6 +154,10 @@ label {
     &[background="purple"] {
       background: #4d2365;
     }
+  }
+
+  &[no-indent] {
+    padding: 0.4em 0;
   }
 }
 
@@ -495,6 +510,12 @@ info-card-model {
   bottom: -10em;
   left: 0;
   width: 100%;
+  background: rgb(245, 242, 234);
+  background: linear-gradient(
+    0deg,
+    rgba(245, 242, 234, 1) 86%,
+    rgba(255, 255, 255, 0) 100%
+  );
 
   @include almidhoriz;
 
