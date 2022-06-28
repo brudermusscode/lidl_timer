@@ -6,7 +6,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 ?>
 
 <info-card-model>
-  <pulse color="orange"></pulse>
   <div class="icm-inr">
     <p>
       <?php

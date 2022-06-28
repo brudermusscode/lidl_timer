@@ -46,6 +46,8 @@ const init_countdown = (url, append) => {
       // startup is ON
       if (status) {
 
+        console.log('COUNTDOWN RUNNING:', status);
+
         // start the countdown
         start_countdown();
 
@@ -55,6 +57,9 @@ const init_countdown = (url, append) => {
         // clear interval
         clearInterval(loading_inveral);
       } else {
+
+        console.log("COUNTDOWN RUNNING:", status);
+
         if (!info_card_status) {
 
           // show info card
@@ -78,7 +83,6 @@ const check_countdown_running = (url, append) => {
     dataType: 'JSON',
     method: 'GET',
     success: (data) => {
-      console.log(data.status);
 
       // show countdown when it's running (respone with true status)
       if (data.status) {
@@ -87,9 +91,6 @@ const check_countdown_running = (url, append) => {
 
         // clear the interval for checking countdown startup
         clearInterval(loading_inveral);
-
-        // reload the info card
-        setTimeout(() => info_card_exists($app), 2000);
       }
 
       status = data.status;
@@ -185,23 +186,32 @@ const info_card_exists = (append) => {
 
   // if info card already exists, remove it first
   if ($info_card.length > 0) {
+
+    console.log('Info card exists, removing...');
+
     $info_card.attr('active', false);
+
     setTimeout(() => {
       $info_card.remove();
       load_info_card(url, append);
     }, 400);
+
   } else {
+
+    console.log('No info card exists, adding new one...');
+
     load_info_card(url, append);
   }
 };
 
 const load_info_card = (url, append) => {
+  console.log('Adding new info card...');
+
   $.get(url, (data) => {
     if (data) append.append(data);
+
     setTimeout(() => {
       append.find("info-card-model").attr("active", true);
     }, 100);
-  }).fail((data) => {
-    console.error(data);
   });
 };
