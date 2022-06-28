@@ -34,6 +34,7 @@ if (preg_match('/^errors/', $page)) $body = 'not-found';
   <script src="<?php echo SCRIPT . "/jquery.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/Overlay.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/Responder.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/Countdown.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/application.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/users.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/votes.min.js"; ?>"></script>

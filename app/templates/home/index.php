@@ -8,9 +8,6 @@ $page = 'home/index';
 
 include_once TEMPLATE . "/layout/head.php";
 include_once TEMPLATE . "/layout/header.php";
+include_once TEMPLATE . "/layout/footer.php";
 
 ?>
-
-<countdown data-react="countdown,load"></countdown>
-
-<?php include_once TEMPLATE . "/layout/footer.php"; ?>
