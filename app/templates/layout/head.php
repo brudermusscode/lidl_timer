@@ -41,8 +41,10 @@ if (preg_match('/^errors/', $page)) $body = 'not-found';
 </head>
 
 <body class='<?php echo "$body"; ?>' timer="<?php echo $timer ? $timer : 'false'; ?>"
-  countdown-running="<?php echo $countdown_running ? 'true' : 'false'; ?>">
+  countdown-running="<?php echo $countdown->running ? 'true' : 'false'; ?>">
 
-  <?php if (!$due_reached) { ?>
-  <audio id="audio_mlg_horn" src='<?php echo SOUND . '/mlg_horn.mp3'; ?>'></audio>
-  <?php } ?>
+  <app>
+
+    <?php if (!$due_reached) { ?>
+    <audio id="audio_mlg_horn" src='<?php echo SOUND . '/mlg_horn.mp3'; ?>'></audio>
+    <?php } ?>

@@ -4,7 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
 # redirect to root path if dev env is disabled and user is logged in
-if(!$dev_env && LOGGED) header('location: /');
+if(!DEV && LOGGED) header('location: /');
 
 # init page
 $page = 'users/login';
@@ -12,7 +12,8 @@ $page = 'users/login';
 include_once TEMPLATE . '/layout/head.php';
 include_once TEMPLATE . '/layout/header.php'; ?>
 
-<login-header data-react="scroll,header" style="background:url(<?php echo IMAGE . '/5674509.jpg'; ?>) center no-repeat;background-size:cover;">
+<login-header data-react="scroll,header"
+  style="background:url(<?php echo IMAGE . '/5674509.jpg'; ?>) center no-repeat;background-size:cover;">
 </login-header>
 
 <div data-structure="header,after,spacing"></div>

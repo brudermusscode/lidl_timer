@@ -493,15 +493,17 @@ info-card-model {
   position: fixed;
   z-index: 101;
   bottom: -40em;
+  left: 0;
+  width: 100%;
 
   @include almidhoriz;
 
   transition: bottom 1.6s $cubic;
 
   .icm-inr {
-    padding: 1em 1.8em;
+    padding: 1.4em 2.4em;
 
-    @extend .tac, .rd18;
+    @extend .tac;
 
     p {
       font-size: 1em;
@@ -511,7 +513,7 @@ info-card-model {
   }
 
   &[active="true"] {
-    bottom: 3.4em;
+    bottom: 0;
   }
 }
 

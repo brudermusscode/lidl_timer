@@ -9,7 +9,7 @@ if(empty($_POST['mail']) || LOGGED) exit(json_encode($return));
 $mail = (string) $_POST['mail'];
 
 // check if mail is legit
-if (!$dev_env) {
+if (!DEV) {
   if(!$Sign->validateMail($mail)) {
     $return->message = get_msg(1);
     exit(json_encode($return));
@@ -76,7 +76,7 @@ if (!$send_mail->status) {
 $return->status = true;
 $return->mail = $mail;
 
-if ($dev_env) {
+if (DEV) {
   $return->code = $code;
   $return->message = 'Auth-code is: <strong>' . $code . '</strong> for <strong>' . $mail . '</strong>';
 } else {

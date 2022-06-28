@@ -17,7 +17,7 @@ if (!is_numeric($code) || !strlen($code) === 4) {
 }
 
 # check if mail still is valid
-if (!$dev_env) {
+if (!DEV) {
   if(!$Sign->validateMail($mail)) {
     $return->message = get_msg(1);
     exit(json_encode($return));

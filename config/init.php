@@ -28,63 +28,49 @@ include ROOT . "/config/db/connect.php";
 if ($db->getEnvironment() == 'dev') $dev_env = true;
 define('DEV', $dev_env);
 
-# create dynamic return for xhr requests to manage
-# output responsively
-$return = (object) [
-  "status" => false,
-  "message" => "A wild error appeared, fight it!",
-  "init" => [
-    "request" => $_REQUEST,
-    "session" => $_SESSION
-  ]
-];
-
-# user object
-$my = (object) [
-  "id" => 0
-];
-
 # include required classes
 include ROOT . "/app/classes/Main.php";
 include ROOT . "/app/classes/Sign.php";
 include ROOT . "/app/classes/Vote.php";
 
+# get main settings + urls
 $main = $M->get_main_settings();
+
+// = main object
 $main->today = (object) [
   "date" => date('Y-m-d'),
   "time" => date('H:i:s'),
   "timestamp" => date('Y-m-d H:i:s')
 ];
 
-# define things
-define("GITHUB", $main->github);
-define("IMAGE", $main->images);
-define("SCRIPT", $main->scripts);
-define("STYLE", $main->styles);
-define("ICON", $main->icons);
-define("FONT", $main->fonts);
-define("SOUND", $main->sounds);
-define("JOB", $main->jobs);
-define("CURRENT_DATE", $main->today->date);
-define("CURRENT_TIME", $main->today->time);
-define("CURRENT_TIMESTAMP", $main->today->timestamp);
-define("LOGGED", $Sign->isAuthed());
+// = return object (ajax)
+$return = (object) [
+  "status" => false,
+  "message" => "A wild error appeared, fight it!"
+];
+
+# add init object to return in dev mode
+if (DEV) {
+  $return->init = (object) [
+    "request" => $_REQUEST,
+    "session" => $_SESSION
+  ];
+}
 
 # get vote settings
 $vote_settings = $Vote->get_settings();
 $voting_open = $Vote->is_open();
 $weekend = $Vote->is_weekend();
 $voting_starts_text = $Vote->voting_starts();
+$current_timestamp = $main->today->timestamp;
+$closes_at_timestamp = date('Y-m-d ' . $vote_settings->closes_at);
+$opens_at_timestamp = date('Y-m-d ' . $vote_settings->opens_at);
 
 // TODO: remove $today_date for $main->today->date
 $today_date = $main->today->date;
 $due = false;
 $due_reached = false;
 $countdown_running = false;
-
-$current_timestamp = $main->today->timestamp;
-$closes_at_timestamp = date('Y-m-d ' . $vote_settings->closes_at);
-$opens_at_timestamp = date('Y-m-d ' . $vote_settings->opens_at);
 
 if(
   !$weekend
@@ -117,12 +103,54 @@ if(
   }
 }
 
+// = user object
+$my = (object) [
+  "id" => 0,
+  "admin" => 0
+];
+
+// = voting object
+$voting = (object) [
+  "settings" => $vote_settings,
+  "is_open" => $voting_open,
+  "closes" => $closes_at_timestamp,
+  "opens" => $opens_at_timestamp,
+  "is_weekend" => $weekend,
+  "start_text" => $voting_starts_text
+];
+
+// = countdown object
+$countdown = (object) [
+  "due" => $due,
+  "due_reached" => $due_reached,
+  "running" => $countdown_running
+];
+
+// = definitions
+# define >> url
+define("APP_NAME", $main->name);
+define("GITHUB", $main->github);
+define("IMAGE", $main->images);
+define("SCRIPT", $main->scripts);
+define("STYLE", $main->styles);
+define("ICON", $main->icons);
+define("FONT", $main->fonts);
+define("SOUND", $main->sounds);
+define("JOB", $main->jobs);
+# define >> time
+define("CURRENT_DATE", $main->today->date);
+define("CURRENT_TIME", $main->today->time);
+define("CURRENT_TIMESTAMP", $main->today->timestamp);
+# define >> user
+define("LOGGED", $Sign->isAuthed());
+define('ADMIN', $my->admin);
+
+# configure users when logged in
 if (LOGGED) {
   # reset session and get new settings
   $my = $Sign->resetSession();
 
   # objectify php session object and add to user object for shoter use
   $my = (object) $_SESSION;
-
-  define('ADMIN', $my->admin);
+  $my->voted = $Vote->voted();
 }
