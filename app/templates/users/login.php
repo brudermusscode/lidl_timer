@@ -18,7 +18,7 @@ include_once TEMPLATE . '/layout/header.php'; ?>
 
 <div data-structure="header,after,spacing"></div>
 
-<main class="single centered posrel" style="margin-bottom:4em;z-index:2;">
+<main size="single" centered class="posrel" style="margin-bottom:4em;z-index:2;">
   <?php include_once TEMPLATE . "/users/session/_login_container.php"; ?>
   <p class="tac mt32"><?php echo date('Y'); ?> &copy; Deltacity</p>
 </main>

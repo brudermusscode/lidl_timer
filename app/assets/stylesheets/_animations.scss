@@ -83,3 +83,33 @@ pulse {
     opacity: 0;
   }
 }
+
+.fadeIn {
+  opacity: 0;
+  animation: fadeIn 0.1s linear forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeOut {
+  opacity: 1;
+  animation: fadeOut 0.1s linear forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

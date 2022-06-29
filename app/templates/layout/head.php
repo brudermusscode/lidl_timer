@@ -34,12 +34,13 @@ if (preg_match('/^errors/', $page)) $body = 'not-found';
   <script src="<?php echo SCRIPT . "/Overlay.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/Responder.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/Countdown.min.js"; ?>"></script>
+  <script src="<?php echo SCRIPT . "/Loader.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/application.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/users.min.js"; ?>"></script>
   <script src="<?php echo SCRIPT . "/votes.min.js"; ?>"></script>
 </head>
 
-<body class='<?php echo "$body"; ?>' <?php if ($body === 'main') echo 'timer="false"'; ?>>
+<body class='<?php echo "$body"; ?>' <?php if ($body === 'main') echo 'timer="geometric"'; ?>
   <?php if ($countdown->running) echo "countdown-running"; ?>>
 
   <app>

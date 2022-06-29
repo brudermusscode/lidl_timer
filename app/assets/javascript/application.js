@@ -21,7 +21,9 @@ jQuery(function () {
     })
 
     // submit closest form
-    .on("click", "[submit-closest]", $(this).closest("form").trigger("submit"));
+    .on("click", "[submit-closest]", function () {
+      $(this).closest("form").trigger("submit")
+    });
 
   $(window).on("scroll", function () {
     scroll_height = 80;

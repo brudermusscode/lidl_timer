@@ -99,7 +99,13 @@ jQuery(function() {
         shop_id: shop_id
       };
 
+      $loader.add($t, true);
+
       $.get("/do/votes/shop", data, (data) => {
+
+        // remove loader
+        $t.find('loader').remove('fadeIn').addClass('fadeOut');
+
         if (Object.entries(data).length > 0) {
           if (data.status) {
             $t.closest('form').find('box-model').attr('casted', false);

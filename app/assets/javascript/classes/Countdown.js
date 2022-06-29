@@ -58,7 +58,7 @@ class Countdown {
                 info_card_status = true;
               }
             }
-          }, 1000);
+          }, 3000);
         } else {
           setTimeout(() => info_card_exists($app), 2000);
         }
